@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.collect.alipay.domain.User">
+
+	<!-- save a entity -->
+	<insert id="save" parameterType="Loginer">
+		insert into t_user (u_id,
+		u_distributorid, u_username, u_manager, u_tel, u_addr)
+		values (#{id},
+		#{distributor.id}, #{username}, #{manager}, #{tel}, #{addr})
+	</insert>
+
+	<!-- delete a entity -->
+	<delete id="delete" parameterType="string">
+		delete from t_user where u_id
+		=
+		#{id}
+	</delete>
+
+	<!-- update a entity -->
+	<update id="update" parameterType="User">
+		update t_user
+		<set>
+			<if test="distributor != null and distributor.id != null">
+				u_distributorId = #{distributor.id},
+			</if>
+			<if test="username != null">
+				u_username = #{username},
+			</if>
+			<if test="manager">
+				u_manager = #{manager},
+			</if>
+			<if test="tel">
+				u_tel = #{tel},
+			</if>
+			<if test="addr">
+				u_addr = #{addr}
+			</if>
+		</set>
+		where u_id = #{id}
+	</update>
+
+	<!-- 获取一个实体 -->
+	<select id="getById" parameterType="string" resultMap="user">
+		select * from t_user u left join t_distributor d on u.u_distributorId = d.d_id where u.u_id = #{id}
+	</select>
+
+	<!-- 根据条件查询分页数据 -->
+	<select id="getByCondition" parameterType="com.collect.alipay.control.dto.BaseDto" resultMap="user">
+		select * from t_user u left join t_distributor d on u.u_distributorId = d.d_id limit #{start}, #{length}
+	</select>
+
+	<!-- 获取记录总数 -->
+	<select id="getCount" resultType="int">
+		select count(*) from t_user
+	</select>
+
+	<!-- 根据条件获取记录数 -->
+	<select id="getCountWithCondition" parameterType="User" resultType="int">
+		select count(*) from t_user
+		<where>
+			<if test="distributor != null and distributor.id != null">
+				u_distributorId = #{distributor.id}
+			</if>
+			<if test="username != null">
+				and u_username = #{username}
+			</if>
+			<if test="manager">
+				and u_manager = #{manager}
+			</if>
+			<if test="tel">
+				and u_tel = #{tel}
+			</if>
+			<if test="addr">
+				and u_addr = #{addr}
+			</if>
+		</where>
+	</select>
+
+	<resultMap type="User" id="user">
+		<id column="u_id" property="id" />
+		<result column="u_username" property="username" />
+		<result column="u_manager" property="manager" />
+		<result column="u_tel" property="tel" />
+		<result column="u_addr" property="addr" />
+		<association property="distributor" javaType="Distributor">
+			<id column="d_id" property="id" />
+			<result column="d_name" property="name" />
+		</association>
+	</resultMap>
+</mapper>

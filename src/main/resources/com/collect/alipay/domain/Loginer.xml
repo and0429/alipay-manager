@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.collect.alipay.domain.Loginer">
+
+	<!-- check login -->
+	<select id="check" parameterType="Loginer" resultMap="loginer">
+		select *
+		from t_loginer where
+		l_username = #{username} and l_password = #{password}
+	</select>
+
+	<!-- save e entity -->
+	<insert id="save" parameterType="Loginer">
+		insert into t_loginer (l_id,
+		l_username, l_password) values (#{id}, #{username}, #{password})
+	</insert>
+
+	<!-- delete a entity by id -->
+	<delete id="delete" parameterType="string">
+		delete from t_loginer where
+		l_id = #{id}
+	</delete>
+
+	<resultMap type="Loginer" id="loginer">
+		<id column="l_id" property="id" />
+		<result column="l_username" property="username" />
+		<result column="l_password" property="password" />
+	</resultMap>
+</mapper>
