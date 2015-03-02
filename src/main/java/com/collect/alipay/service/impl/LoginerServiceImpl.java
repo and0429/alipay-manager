@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.collect.alipay.service.impl;
 
 import javax.inject.Named;
