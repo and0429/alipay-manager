@@ -5,7 +5,7 @@ var navigation = Object();
  */
 navigation.main = function() {
 	navigation.setUser();
-}
+};
 
 /**
  * 获取在线用户的用户名
@@ -22,7 +22,7 @@ navigation.setUser = function() {
 			}
 		}
 	});
-}
+};
 
 /**
  * 调用

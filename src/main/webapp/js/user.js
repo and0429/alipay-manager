@@ -5,7 +5,7 @@ var user = new Object();
  */
 user.main = function() {
 	user.dataTable();
-}
+};
 
 /**
  * Load dataTable
@@ -36,7 +36,7 @@ user.dataTable = function() {
 		}
 
 	});
-}
+};
 
 /**
  * js add add button
@@ -44,7 +44,7 @@ user.dataTable = function() {
 user.addButton = function() {
 	var html = "<button class='btn btn-warning' style='margin-bottom:5px'>新增</button>";
 	$('.toolbar').html(html);
-}
+};
 
 /**
  * excute method
