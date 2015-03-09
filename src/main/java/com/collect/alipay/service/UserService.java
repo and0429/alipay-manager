@@ -1,9 +1,6 @@
 package com.collect.alipay.service;
 
-import java.util.List;
-import java.util.Map;
-
-import com.collect.alipay.control.dto.BaseDto;
+import com.collect.alipay.control.dto.DataTableDto;
 import com.collect.alipay.domain.User;
 
 /**
@@ -21,15 +18,6 @@ public interface UserService extends BaseService<User> {
 	 *            数据传输对象
 	 * @return 数据Map
 	 */
-	Map<String, Object> getPager(BaseDto baseDto);
-
-	/**
-	 * 获取条件数据
-	 * 
-	 * @param baseDto
-	 *            数据传输对象
-	 * @return 数据集合
-	 */
-	List<User> getByCondition(BaseDto baseDto);
+	DataTableDto<User> getPager(User user);
 
 }

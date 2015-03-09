@@ -1,6 +1,5 @@
 package com.collect.alipay.domain;
 
-import java.io.Serializable;
 
 /**
  * 用户模型
@@ -8,7 +7,7 @@ import java.io.Serializable;
  * @author zhangkai
  * 
  */
-public class User implements Serializable {
+public class User extends BaseModel {
 
 	/**
 	 * 

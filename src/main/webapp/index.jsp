@@ -26,13 +26,13 @@
 				<sf:form modelAttribute="loginer" method="post">
 					<div class='row-fluid'>
 						<div class='span12 icon-over-input'>
-							<sf:input path="username" class="span12" placeholder="用户名" />
+							<sf:input autofocus="autofocus" required="required" path="username" class="span12" placeholder="用户名" />
 							<i class='icon-user muted'><sf:errors path="username" style="color: red;" /></i>
 						</div>
 					</div>
 					<div class='row-fluid'>
 						<div class='span12 icon-over-input'>
-							<sf:password path="password" class="span12" placeholder="密码" />
+							<sf:password required="required" path="password" class="span12" placeholder="密码" />
 							<i class='icon-lock muted'><sf:errors path="password" style="color: red;" /></i>
 						</div>
 					</div>

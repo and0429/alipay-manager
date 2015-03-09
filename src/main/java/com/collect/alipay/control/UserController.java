@@ -1,7 +1,5 @@
 package com.collect.alipay.control;
 
-import java.util.Map;
-
 import javax.inject.Inject;
 
 import org.springframework.web.bind.annotation.PathVariable;
@@ -9,7 +7,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.collect.alipay.control.dto.BaseDto;
 import com.collect.alipay.domain.User;
 import com.collect.alipay.service.UserService;
 
@@ -41,9 +38,7 @@ public class UserController {
 	 * @return 组装好的表格数据
 	 */
 	@RequestMapping(value = "/users", method = RequestMethod.GET)
-	public Object users(BaseDto baseDto) {
-
-		Map<String, Object> map = userService.getPager(baseDto);
-		return map;
+	public Object users(User user) {
+		return userService.getPager(user);
 	}
 }

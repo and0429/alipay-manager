@@ -10,7 +10,7 @@
 		insert into t_user (u_id,
 		u_distributorid, u_username, u_manager, u_tel, u_addr)
 		values (#{id},
-		#{distributor.id}, #{username}, #{manager}, #{tel}, #{addr})
+		#{distributor.id}, #{username}, #{manager, jdbcType=VARCHAR}, #{tel}, #{addr, jdbcType=VARCHAR})
 	</insert>
 
 	<!-- delete a entity -->
@@ -49,7 +49,7 @@
 	</select>
 
 	<!-- 根据条件查询分页数据 -->
-	<select id="getByCondition" parameterType="com.collect.alipay.control.dto.BaseDto" resultMap="user">
+	<select id="getpager" parameterType="User" resultMap="user">
 		select * from t_user u left join t_distributor d on u.u_distributorId = d.d_id limit #{start}, #{length}
 	</select>
 

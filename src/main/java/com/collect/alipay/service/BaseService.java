@@ -1,6 +1,7 @@
 package com.collect.alipay.service;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * 业务类的基础接口
@@ -16,7 +17,7 @@ public interface BaseService<T> {
 	 * @param t
 	 *            要保存的对象
 	 */
-	void save(T t);
+	Integer save(T t);
 
 	/**
 	 * 根据Id删除对象
@@ -24,7 +25,7 @@ public interface BaseService<T> {
 	 * @param id
 	 *            主键Id
 	 */
-	void delete(Serializable id);
+	Integer delete(Serializable id);
 
 	/**
 	 * 更新对象
@@ -32,7 +33,7 @@ public interface BaseService<T> {
 	 * @param t
 	 *            待更新的对象
 	 */
-	void update(T t);
+	Integer update(T t);
 
 	/**
 	 * 根据Id查询一个实体
@@ -50,6 +51,15 @@ public interface BaseService<T> {
 	 *            查询条件。不需要条件时传null;
 	 * @return 查询到的记录数
 	 */
-	int getCount(T condition);
+	Integer getCount(T condition);
+
+	/**
+	 * 查询所有的数据
+	 * 
+	 * @param condition
+	 *            查询条件。 没有条件时传 null
+	 * @return 查询到的数据集合
+	 */
+	List<T> getAll(T condition);
 
 }

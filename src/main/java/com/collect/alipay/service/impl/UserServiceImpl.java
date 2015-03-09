@@ -1,12 +1,10 @@
 package com.collect.alipay.service.impl;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.inject.Named;
 
-import com.collect.alipay.control.dto.BaseDto;
+import com.collect.alipay.control.dto.DataTableDto;
 import com.collect.alipay.domain.User;
 import com.collect.alipay.service.UserService;
 
@@ -27,32 +25,13 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
 	 * .dto.BaseDto)
 	 */
 	@Override
-	public Map<String, Object> getPager(BaseDto baseDto) {
+	public DataTableDto<User> getPager(User user) {
 
-		Map<String, Object> map = new HashMap<String, Object>();
+		List<User> list = this.getAll(user);
+		int total = this.getCount(user);
 
-		List<User> list = this.getByCondition(baseDto);
-		int total = this.getCount(null);
+		return new DataTableDto<User>(user.getDraw(), total, list);
 
-		map.put("draw", baseDto.getDraw());
-		map.put("data", list);
-		map.put("recordsTotal", total);
-		map.put("recordsFiltered", total);
-
-		return map;
-
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.collect.alipay.service.UserService#getByCondition(com.collect.alipay
-	 * .control.dto.BaseDto)
-	 */
-	@Override
-	public List<User> getByCondition(BaseDto baseDto) {
-		return sqlSession.selectList(User.class.getName() + ".getByCondition", baseDto);
 	}
 
 }

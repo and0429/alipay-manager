@@ -8,7 +8,12 @@ import org.hibernate.validator.constraints.NotEmpty;
  * @author zhangkai
  *
  */
-public class Loginer {
+public class Loginer extends BaseModel{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	private String id;
 

@@ -6,6 +6,7 @@ package com.collect.alipay.service.impl;
 import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
+import java.util.List;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -49,8 +50,8 @@ public abstract class BaseServiceImpl<T> implements BaseService<T> {
 	 * @see com.collect.alipay.service.BaseService#save(java.lang.Object)
 	 */
 	@Override
-	public void save(T t) {
-		sqlSession.insert(clazz.getName() + ".save", t);
+	public Integer save(T t) {
+		return sqlSession.insert(clazz.getName() + ".save", t);
 	}
 
 	/*
@@ -59,8 +60,8 @@ public abstract class BaseServiceImpl<T> implements BaseService<T> {
 	 * @see com.collect.alipay.service.BaseService#delete(java.io.Serializable)
 	 */
 	@Override
-	public void delete(Serializable id) {
-		sqlSession.delete(clazz.getName() + ".delete", id);
+	public Integer delete(Serializable id) {
+		return sqlSession.delete(clazz.getName() + ".delete", id);
 	}
 
 	/*
@@ -69,8 +70,8 @@ public abstract class BaseServiceImpl<T> implements BaseService<T> {
 	 * @see com.collect.alipay.service.BaseService#update(java.lang.Object)
 	 */
 	@Override
-	public void update(T t) {
-		sqlSession.delete(clazz.getName() + ".update", t);
+	public Integer update(T t) {
+		return sqlSession.delete(clazz.getName() + ".update", t);
 	}
 
 	/*
@@ -89,14 +90,27 @@ public abstract class BaseServiceImpl<T> implements BaseService<T> {
 	 * @see
 	 */
 	@Override
-	public int getCount(T condition) {
+	public Integer getCount(T condition) {
 
 		if (condition == null) {
 			return sqlSession.selectOne(clazz.getName() + ".getCount");
 		} else {
 			return sqlSession.selectOne(clazz.getName() + ".getCountWithCondition", condition);
 		}
+	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.collect.alipay.service.BaseService#getAll(java.lang.Object)
+	 */
+	@Override
+	public List<T> getAll(T condition) {
+		if (condition == null) {
+			return sqlSession.selectList(clazz.getName() + ".getAll");
+		} else {
+			return sqlSession.selectList(clazz.getName() + ".getpager", condition);
+		}
 	}
 
 }

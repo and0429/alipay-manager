@@ -31,7 +31,10 @@ user.dataTable = function() {
 			"data" : "addr"
 		} ],
 
-		"drawCallback" : function(settings) {
+		'drawCallback' : function(settings) {
+
+		},
+		'initComplete' : function() {
 			user.addButton();
 		}
 
@@ -42,7 +45,11 @@ user.dataTable = function() {
  * js add add button
  */
 user.addButton = function() {
-	var html = "<button class='btn btn-warning' style='margin-bottom:5px'>新增</button>";
+
+	var html = "";
+	html += "<input type='search' name='username' placeholder='请输入用户名'/>";
+	html += "<button class='btn btn-primary' style='margin-bottom: 10px; margin-left: 10px;'>查询</button>"
+	html += "<button class='btn btn-warning' style='margin-bottom: 10px; margin-left: 10px;'>新增</button>";
 	$('.toolbar').html(html);
 };
 
