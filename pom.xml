@@ -185,7 +185,9 @@
 				</configuration>
 			</plugin>
 
-			<!-- 每次拷贝部署到指定的目录 -->
+			<!-- 每次拷贝部署到指定的目录 <plugin> <groupId>org.codehaus.cargo</groupId> <artifactId>cargo-maven2-plugin</artifactId> <version>1.0</version> <configuration> <container> <containerId>tomcat6x</containerId> <home>D:\java\apache-tomcat-6.0.43</home> </container> <configuration> <type>standalone</type> <home>${project.build.directory}/tomcat6x</home> <properties> <cargo.servlet.port>8887</cargo.servlet.port> </properties> </configuration> </configuration> </plugin> -->
+
+			<!-- 部署到指定的目录 -->
 			<plugin>
 				<groupId>org.codehaus.cargo</groupId>
 				<artifactId>cargo-maven2-plugin</artifactId>
@@ -193,20 +195,14 @@
 				<configuration>
 					<container>
 						<containerId>tomcat6x</containerId>
-						<home>D:\java\apache-tomcat-6.0.43</home>
+						<home>C:\Users\zhangkai\Desktop\apache-tomcat-6.0.43</home>
 					</container>
 					<configuration>
-						<type>standalone</type>
-						<home>${project.build.directory}/tomcat6x</home>
-						<properties>
-							<cargo.servlet.port>8887</cargo.servlet.port>
-						</properties>
+						<type>existing</type>
+						<home>C:\Users\zhangkai\Desktop\apache-tomcat-6.0.43</home>
 					</configuration>
 				</configuration>
 			</plugin>
-
-			<!-- 部署到指定的目录 -->
-			<!-- <plugin> <groupId>org.codehaus.cargo</groupId> <artifactId>cargo-maven2-plugin</artifactId> <version>1.0</version> <configuration> <container> <containerId>tomcat6x</containerId> <home>D:\java\apache-tomcat-6.0.43</home> </container> <configuration> <type>existing</type> <home>D:\java\apache-tomcat-6.0.43</home> </configuration> </configuration> </plugin> -->
 		</plugins>
 	</build>
 

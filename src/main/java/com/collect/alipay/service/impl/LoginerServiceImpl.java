@@ -1,7 +1,5 @@
 package com.collect.alipay.service.impl;
 
-import java.util.List;
-
 import javax.inject.Named;
 
 import com.collect.alipay.domain.Loginer;
@@ -42,12 +40,6 @@ public class LoginerServiceImpl extends BaseServiceImpl<Loginer> implements Logi
 	@Override
 	public Loginer getByUsername(String username) {
 		return sqlSession.selectOne(clazz.getName() + ".getByUsername", username);
-	}
-
-	@Override
-	public List<Loginer> getAll(Loginer condition) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 }

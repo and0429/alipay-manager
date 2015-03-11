@@ -1,5 +1,7 @@
 package com.collect.alipay.service;
 
+import java.util.UUID;
+
 import javax.inject.Inject;
 
 import org.junit.Assert;
@@ -24,6 +26,7 @@ public class LoginerServiceTest {
 		Loginer loginer = new Loginer();
 
 		String id = UUIDUtil.randomUUID();
+	
 
 		loginer.setId(id);
 		loginer.setPassword("password");
@@ -37,6 +40,13 @@ public class LoginerServiceTest {
 
 		service.delete(id);
 
+	}
+	
+	@Test
+	public void test2(){
+		
+		int i  =UUID.randomUUID().toString().length();
+		System.out.print(i);
 	}
 
 }

@@ -18,7 +18,14 @@ user.dataTable = function() {
 		"searching" : false,
 		"dom" : 'l<"toolbar">rtip',
 		"language" : util.dataTableLanguage(),
-		"ajax" : "../user/users.do",
+		"ajax" : {
+			'url' : '../user/users.do',
+			'dataType' : 'json',
+			'type' : 'POST',
+			'data' : function(d) {
+				return $.extend(d, {});
+			}
+		},
 		"columns" : [ {
 			"data" : "distributor.name"
 		}, {

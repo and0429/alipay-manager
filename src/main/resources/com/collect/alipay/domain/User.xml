@@ -30,13 +30,13 @@
 			<if test="username != null">
 				u_username = #{username},
 			</if>
-			<if test="manager">
+			<if test="manager != null">
 				u_manager = #{manager},
 			</if>
-			<if test="tel">
+			<if test="tel != null">
 				u_tel = #{tel},
 			</if>
-			<if test="addr">
+			<if test="addr != null">
 				u_addr = #{addr}
 			</if>
 		</set>
@@ -50,7 +50,9 @@
 
 	<!-- 根据条件查询分页数据 -->
 	<select id="getpager" parameterType="User" resultMap="user">
-		select * from t_user u left join t_distributor d on u.u_distributorId = d.d_id limit #{start}, #{length}
+		select * from t_user u left join t_distributor d on u.u_distributorId = d.d_id
+		<include refid="whereCondition" />
+		limit #{start}, #{length}
 	</select>
 
 	<!-- 获取记录总数 -->
@@ -61,6 +63,23 @@
 	<!-- 根据条件获取记录数 -->
 	<select id="getCountWithCondition" parameterType="User" resultType="int">
 		select count(*) from t_user
+		<include refid="whereCondition" />
+	</select>
+
+	<resultMap type="User" id="user">
+		<id column="u_id" property="id" />
+		<result column="u_username" property="username" />
+		<result column="u_manager" property="manager" />
+		<result column="u_tel" property="tel" />
+		<result column="u_addr" property="addr" />
+		<association property="distributor" javaType="Distributor">
+			<id column="d_id" property="id" />
+			<result column="d_name" property="name" />
+		</association>
+	</resultMap>
+
+	<!-- where condition -->
+	<sql id="whereCondition">
 		<where>
 			<if test="distributor != null and distributor.id != null">
 				u_distributorId = #{distributor.id}
@@ -78,17 +97,6 @@
 				and u_addr = #{addr}
 			</if>
 		</where>
-	</select>
+	</sql>
 
-	<resultMap type="User" id="user">
-		<id column="u_id" property="id" />
-		<result column="u_username" property="username" />
-		<result column="u_manager" property="manager" />
-		<result column="u_tel" property="tel" />
-		<result column="u_addr" property="addr" />
-		<association property="distributor" javaType="Distributor">
-			<id column="d_id" property="id" />
-			<result column="d_name" property="name" />
-		</association>
-	</resultMap>
 </mapper>

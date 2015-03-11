@@ -13,6 +13,8 @@ import javax.inject.Named;
 
 import org.apache.ibatis.session.SqlSession;
 
+import com.collect.alipay.control.dto.DataTableDto;
+import com.collect.alipay.domain.BaseModel;
 import com.collect.alipay.service.BaseService;
 
 /**
@@ -111,6 +113,24 @@ public abstract class BaseServiceImpl<T> implements BaseService<T> {
 		} else {
 			return sqlSession.selectList(clazz.getName() + ".getpager", condition);
 		}
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.collect.alipay.service.BaseService#getPager(java.lang.Object)
+	 */
+	@Override
+	public DataTableDto<T> getPager(T condition) {
+
+		List<T> list = this.getAll(condition);
+		int total = this.getCount(condition);
+		int draw = 0;
+		if (condition instanceof BaseModel) {
+			draw = ((BaseModel) condition).getDraw();
+		}
+
+		return new DataTableDto<T>(draw, total, list);
 	}
 
 }

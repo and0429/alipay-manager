@@ -3,6 +3,8 @@ package com.collect.alipay.service;
 import java.io.Serializable;
 import java.util.List;
 
+import com.collect.alipay.control.dto.DataTableDto;
+
 /**
  * 业务类的基础接口
  * 
@@ -61,5 +63,14 @@ public interface BaseService<T> {
 	 * @return 查询到的数据集合
 	 */
 	List<T> getAll(T condition);
+
+	/**
+	 * 获取分页数据
+	 * 
+	 * @param t
+	 *            封装条件
+	 * @return 数据
+	 */
+	DataTableDto<T> getPager(T t);
 
 }
