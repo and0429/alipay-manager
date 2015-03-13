@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.collect.alipay.control.dto.Status;
-import com.collect.alipay.domain.User;
-import com.collect.alipay.service.UserService;
+import com.collect.alipay.domain.Cust;
+import com.collect.alipay.service.CustService;
 
 /**
  * 用户的控制器类
@@ -18,15 +18,15 @@ import com.collect.alipay.service.UserService;
  *
  */
 @RestController
-@RequestMapping(value = "/user")
-public class UserController {
+@RequestMapping(value = "/cust")
+public class CustController {
 
 	@Inject
-	private UserService userService;
+	private CustService custService;
 
 	@RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
 	public Object user(@PathVariable String id) {
-		int result = userService.delete(id);
+		int result = custService.delete(id);
 		return new Status(result);
 	}
 
@@ -36,7 +36,7 @@ public class UserController {
 	 * @return 组装好的表格数据
 	 */
 	@RequestMapping(value = "/users", method = RequestMethod.POST)
-	public Object users(User user) {
-		return userService.getPager(user);
+	public Object users(Cust user) {
+		return custService.getPager(user);
 	}
 }

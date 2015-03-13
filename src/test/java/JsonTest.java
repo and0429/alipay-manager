@@ -1,12 +1,12 @@
 import org.junit.Test;
 
-import com.collect.alipay.domain.User;
+import com.collect.alipay.domain.Cust;
 
 public class JsonTest {
 	
 	@Test
 	public void test(){
-		User u = new User();
+		Cust u = new Cust();
 		u.setAddr("addr");
 		
 		System.out.println(u);

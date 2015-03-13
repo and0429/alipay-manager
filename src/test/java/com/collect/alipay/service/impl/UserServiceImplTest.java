@@ -12,8 +12,8 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.collect.alipay.domain.Distributor;
-import com.collect.alipay.domain.User;
-import com.collect.alipay.service.UserService;
+import com.collect.alipay.domain.Cust;
+import com.collect.alipay.service.CustService;
 import com.collect.alipay.util.UUIDUtil;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -21,12 +21,12 @@ import com.collect.alipay.util.UUIDUtil;
 public class UserServiceImplTest {
 
 	@Inject
-	private UserService service;
+	private CustService service;
 
 	@Test
 	public void test_001_Save() {
 
-		User u = new User();
+		Cust u = new Cust();
 		String id = UUIDUtil.randomUUID();
 
 		u.setId(id);
@@ -38,7 +38,7 @@ public class UserServiceImplTest {
 
 		service.save(u);
 
-		User u2 = service.getById(id);
+		Cust u2 = service.getById(id);
 		assertNotNull(u2);
 		assertEquals("18192830300", u2.getTel());
 		
@@ -47,13 +47,13 @@ public class UserServiceImplTest {
 		
 		service.update(u2);
 
-		User u3 = service.getById(id);
+		Cust u3 = service.getById(id);
 		assertNotNull(u3);
 		assertEquals("更新后的manage", u3.getManager());
 		
 		
 		service.delete(id);
-		User u4 = service.getById(id);
+		Cust u4 = service.getById(id);
 		assertNull(u4);
 		
 		

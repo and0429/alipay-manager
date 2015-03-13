@@ -7,7 +7,7 @@ package com.collect.alipay.domain;
  * @author zhangkai
  * 
  */
-public class User extends BaseModel {
+public class Cust extends BaseModel {
 
 	/**
 	 * 

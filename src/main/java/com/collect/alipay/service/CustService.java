@@ -1,6 +1,6 @@
 package com.collect.alipay.service;
 
-import com.collect.alipay.domain.User;
+import com.collect.alipay.domain.Cust;
 
 /**
  * 用户业务接口
@@ -8,6 +8,6 @@ import com.collect.alipay.domain.User;
  * @author zhangkai
  *
  */
-public interface UserService extends BaseService<User> {
+public interface CustService extends BaseService<Cust> {
 
 }
