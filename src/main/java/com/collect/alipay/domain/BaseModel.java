@@ -54,4 +54,9 @@ public abstract class BaseModel implements Serializable {
 		this.draw = draw;
 	}
 
+	@Override
+	public String toString() {
+		return net.sf.json.JSONObject.fromObject(this).toString();
+	}
+
 }

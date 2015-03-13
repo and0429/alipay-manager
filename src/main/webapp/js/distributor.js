@@ -26,13 +26,13 @@ var setting = {
 		}
 	},
 	callback : {
-		onClick : function(event,treeId, treeNode) {
+		onClick : function(event, treeId, treeNode) {
 
 			console.log(treeNode.open);
-			
+
 			treeNode.open = (!treeNode.open);
 			console.log(treeNode);
-			
+
 			zTreeObj.refresh();
 
 		}
@@ -42,7 +42,8 @@ var setting = {
 var nodes = [ {
 	id : 1,
 	pId : -1,
-	name : "0"
+	name : "0",
+	open : true
 }, {
 	id : 2,
 	pId : 1,
