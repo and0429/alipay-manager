@@ -3,15 +3,9 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.collect.alipay.domain.User">
+<mapper namespace="com.collect.alipay.domain.Cust">
 
-	<!-- save a entity -->
-	<insert id="save" parameterType="Loginer">
-		insert into t_user (u_id,
-		u_distributorid, u_username, u_manager, u_tel, u_addr)
-		values (#{id},
-		#{distributor.id}, #{username}, #{manager, jdbcType=VARCHAR}, #{tel}, #{addr, jdbcType=VARCHAR})
-	</insert>
+
 
 	<!-- delete a entity -->
 	<delete id="delete" parameterType="string">
@@ -21,7 +15,7 @@
 	</delete>
 
 	<!-- update a entity -->
-	<update id="update" parameterType="User">
+	<update id="update" parameterType="Cust">
 		update t_user
 		<set>
 			<if test="distributor != null and distributor.id != null">
@@ -44,12 +38,12 @@
 	</update>
 
 	<!-- 获取一个实体 -->
-	<select id="getById" parameterType="string" resultMap="user">
+	<select id="getById" parameterType="string" resultMap="cust">
 		select * from t_user u left join t_distributor d on u.u_distributorId = d.d_id where u.u_id = #{id}
 	</select>
 
 	<!-- 根据条件查询分页数据 -->
-	<select id="getpager" parameterType="User" resultMap="user">
+	<select id="getpager" parameterType="Cust" resultMap="cust">
 		select * from t_user u left join t_distributor d on u.u_distributorId = d.d_id
 		<include refid="whereCondition" />
 		limit #{start}, #{length}
@@ -61,12 +55,12 @@
 	</select>
 
 	<!-- 根据条件获取记录数 -->
-	<select id="getCountWithCondition" parameterType="User" resultType="int">
+	<select id="getCountWithCondition" parameterType="cust" resultType="int">
 		select count(*) from t_user
 		<include refid="whereCondition" />
 	</select>
 
-	<resultMap type="User" id="user">
+	<resultMap type="Cust" id="cust">
 		<id column="u_id" property="id" />
 		<result column="u_username" property="username" />
 		<result column="u_manager" property="manager" />

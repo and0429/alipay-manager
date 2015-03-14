@@ -19,7 +19,7 @@ user.dataTable = function() {
 		"dom" : 'l<"toolbar">rtip',
 		"language" : util.dataTableLanguage(),
 		"ajax" : {
-			'url' : '../user/users.do',
+			'url' : '../cust/custs.do',
 			'dataType' : 'json',
 			'type' : 'POST',
 			'data' : function(d) {

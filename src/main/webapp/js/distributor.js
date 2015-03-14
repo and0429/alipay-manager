@@ -2,7 +2,7 @@
  * 
  */
 
-var zTreeObj;
+var zTreeObj;var nodes;
 
 var setting = {
 	view : {
@@ -39,7 +39,17 @@ var setting = {
 	}
 };
 
-var nodes = [ {
+$.ajax({
+	url : '../distributor/getTree.do',
+	success : function(data) {
+		
+		nodes = data;
+		console.log(nodes)
+
+	}
+})
+
+/*var nodes = [ {
 	id : 1,
 	pId : -1,
 	name : "0",
@@ -60,7 +70,7 @@ var nodes = [ {
 	id : 12,
 	pId : 3,
 	name : "12"
-} ];
+} ];*/
 
 $(document).ready(function() {
 	zTreeObj = $.fn.zTree.init($("#distributorTree"), setting, nodes);

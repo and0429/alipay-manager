@@ -35,7 +35,7 @@ public class CustController {
 	 * 
 	 * @return 组装好的表格数据
 	 */
-	@RequestMapping(value = "/users", method = RequestMethod.POST)
+	@RequestMapping(value = "/custs", method = RequestMethod.POST)
 	public Object users(Cust user) {
 		return custService.getPager(user);
 	}
