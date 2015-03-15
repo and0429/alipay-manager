@@ -52,7 +52,28 @@ public class Distributor extends BaseModel {
 	 * 0:没有
 	 * 
 	 */
-	private Integer haschild;
+	private Integer hasChild;
+
+	public Integer getHasChild() {
+		return hasChild;
+	}
+
+	public void setHasChild(Integer hasChild) {
+		this.hasChild = hasChild;
+	}
+
+	/**
+	 * 是否默认为打开
+	 */
+	private boolean open = true;
+
+	public boolean getOpen() {
+		return open;
+	}
+
+	public void setOpen(boolean open) {
+		this.open = open;
+	}
 
 	public String getId() {
 		return id;
@@ -108,14 +129,6 @@ public class Distributor extends BaseModel {
 
 	public void setpId(String pId) {
 		this.pId = pId;
-	}
-
-	public Integer getHaschild() {
-		return haschild;
-	}
-
-	public void setHaschild(Integer haschild) {
-		this.haschild = haschild;
 	}
 
 }
