@@ -29,13 +29,15 @@ user.dataTable = function() {
 		"columns" : [ {
 			"data" : "distributor.name"
 		}, {
-			"data" : "username"
+			"data" : "name"
+		}, {
+			"data" : "addr"
 		}, {
 			"data" : "manager"
 		}, {
 			"data" : "tel"
 		}, {
-			"data" : "addr"
+			"data" : "id"
 		} ],
 
 		'drawCallback' : function(settings) {

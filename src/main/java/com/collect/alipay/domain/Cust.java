@@ -1,8 +1,7 @@
 package com.collect.alipay.domain;
 
-
 /**
- * 用户模型
+ * 商户模型
  * 
  * @author zhangkai
  * 
@@ -18,30 +17,26 @@ public class Cust extends BaseModel {
 	 * 主键
 	 */
 	private String id;
-
 	/**
-	 * 分销商Id
+	 * 名称
 	 */
-	private Distributor distributor;
-	/**
-	 * 用户名
-	 */
-	private String username;
-
-	/**
-	 * 负责人姓名
-	 */
-	private String manager;
-
-	/**
-	 * 联系电话
-	 */
-	private String tel;
-
+	private String name;
 	/**
 	 * 地址
 	 */
 	private String addr;
+	/**
+	 * 负责人
+	 */
+	private String manager;
+	/**
+	 * 电话
+	 */
+	private String tel;
+	/**
+	 * 所属分销商
+	 */
+	private Distributor distributor;
 
 	public String getId() {
 		return id;
@@ -51,12 +46,20 @@ public class Cust extends BaseModel {
 		this.id = id;
 	}
 
-	public String getUsername() {
-		return username;
+	public String getName() {
+		return name;
 	}
 
-	public void setUsername(String username) {
-		this.username = username;
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getAddr() {
+		return addr;
+	}
+
+	public void setAddr(String addr) {
+		this.addr = addr;
 	}
 
 	public String getManager() {
@@ -67,14 +70,6 @@ public class Cust extends BaseModel {
 		this.manager = manager;
 	}
 
-	public Distributor getDistributor() {
-		return distributor;
-	}
-
-	public void setDistributor(Distributor distributor) {
-		this.distributor = distributor;
-	}
-
 	public String getTel() {
 		return tel;
 	}
@@ -83,12 +78,12 @@ public class Cust extends BaseModel {
 		this.tel = tel;
 	}
 
-	public String getAddr() {
-		return addr;
+	public Distributor getDistributor() {
+		return distributor;
 	}
 
-	public void setAddr(String addr) {
-		this.addr = addr;
+	public void setDistributor(Distributor distributor) {
+		this.distributor = distributor;
 	}
 
 }

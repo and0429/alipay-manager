@@ -34,7 +34,6 @@ public class UserServiceImplTest {
 		u.setDistributor(new Distributor());
 		u.setManager("管理者manager");
 		u.setTel("18192830300");
-		u.setUsername("username");
 
 		service.save(u);
 
