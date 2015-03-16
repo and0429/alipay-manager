@@ -97,19 +97,18 @@
 				<div class="modal-body">
 					<form class="form form-horizontal" method="post" id='custForm'>
 						<div class='control-group margin-T30'>
-							<label class='control-label'> 父级分销商 </label>
-							<div class='controls'>
-								<input class='span3' type="text" id="parentDis" disabled="disabled" style="color: #767171;" />
+							<label class='control-label'>父级分销商 </label>
+							<div class='controls' id='distributor'>
 							</div>
 						</div>
 						<div class='control-group margin-T30'>
-							<label class='control-label'> 分销商名称 </label>
+							<label class='control-label'>姓名</label>
 							<div class='controls'>
 								<input class='span3' type="text" id='name' name="name" maxlength="20" required="required" />
 							</div>
 						</div>
 						<div class='control-group margin-T30'>
-							<label class='control-label'>分销商负责人</label>
+							<label class='control-label'>商户负责人</label>
 							<div class='controls'>
 								<input class='span3' type="text" id='manager' name="manager" maxlength="5" required="required" />
 							</div>
@@ -126,10 +125,10 @@
 								<input class='span3' type="text" id='addr' name="addr" maxlength="50" required="required" />
 							</div>
 						</div>
-						<input type="hidden" name='pId' id='pid'> <input type="hidden" name='id' id='id'>
+						<input type="hidden" name='id' id='id'>
 					</form>
 					<div>
-						<span id="inputError" style="color: #FF0000"></span>
+						<span id="inputError" style="color: #FF0000">dsad</span>
 					</div>
 				</div>
 				<div class="modal-footer">
