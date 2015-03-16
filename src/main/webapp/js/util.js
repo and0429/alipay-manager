@@ -8,6 +8,7 @@ util.dataTableLanguage = function() {
 	return {
 		"lengthMenu" : "每页_MENU_条记录",
 		"zeroRecords" : "没有数据",
+		"infoEmpty" : "0条记录",
 		"processing" : "正在处理...",
 		"search" : "搜索:",
 		"info" : "显示 _START_ 到 _END_ 条，总 _TOTAL_ 条记录",

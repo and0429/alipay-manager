@@ -1,13 +1,13 @@
 <!DOCTYPE html>
+
 <style type="text/css">
-#modal-detail .modal.fade.in {
+/* #modal-detail .modal.fade.in {
 	max-height: 1000px;
 }
 
 .modal-body {
 	max-height: 450px;
-}
-
+} */
 .box {
 	margin-bottom: 5px;
 }
@@ -55,9 +55,6 @@
 									<div class='title' id="carMessage" perid='all'>
 										<i class='fa fa-group'></i>商户信息
 									</div>
-									<div class='actions'>
-										<a href="#" class="btn box-collapse btn-mini btn-link icon-chevron-up" id="userAllInfoShowOrHide"> </a>
-									</div>
 								</div>
 								<div class='box-content box-no-padding'>
 									<div class='responsive-table'>
@@ -84,132 +81,64 @@
 						</div>
 					</div>
 				</div>
-
+			</div>
+		</div>
+	</div>
+	
+	<!-- add department modal -->
+	<div class="modal fade hide" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<i class="fa fa-plus-square"></i>
+					<h4 class="modal-title" id="myModalLabel"></h4>
+				</div>
+				<div class="modal-body">
+					<form class="form form-horizontal" method="post" id='custForm'>
+						<div class='control-group margin-T30'>
+							<label class='control-label'> 父级分销商 </label>
+							<div class='controls'>
+								<input class='span3' type="text" id="parentDis" disabled="disabled" style="color: #767171;" />
+							</div>
+						</div>
+						<div class='control-group margin-T30'>
+							<label class='control-label'> 分销商名称 </label>
+							<div class='controls'>
+								<input class='span3' type="text" id='name' name="name" maxlength="20" required="required" />
+							</div>
+						</div>
+						<div class='control-group margin-T30'>
+							<label class='control-label'>分销商负责人</label>
+							<div class='controls'>
+								<input class='span3' type="text" id='manager' name="manager" maxlength="5" required="required" />
+							</div>
+						</div>
+						<div class='control-group margin-T30'>
+							<label class='control-label'>联系电话</label>
+							<div class='controls'>
+								<input class='span3' type="text" id='tel' name="tel" maxlength="20" required="required" />
+							</div>
+						</div>
+						<div class='control-group margin-T30'>
+							<label class='control-label'>联系地址</label>
+							<div class='controls'>
+								<input class='span3' type="text" id='addr' name="addr" maxlength="50" required="required" />
+							</div>
+						</div>
+						<input type="hidden" name='pId' id='pid'> <input type="hidden" name='id' id='id'>
+					</form>
+					<div>
+						<span id="inputError" style="color: #FF0000"></span>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class='btn btn-info' data-dismiss="modal">取消</button>
+					<button type="button" class='btn btn-primary' id="saveBtn">确认</button>
+				</div>
 			</div>
 		</div>
 	</div>
 </div>
 
-<div class='modal hide fade' id='modal-detail' role='dialog' tabindex='-1'>
-	<div class='modal-header'>
-		<button class='close clossAdd' data-dismiss='modal' type='button'>X</button>
-		<h3 class="modal-head-name">添加设备</h3>
-	</div>
-	<div class='modal-body' id="userModal">
-		<div class='form' style='margin-bottom: 0;'>
-			<!-------------------------------------------------------------人员详细添加模块start ---------------------------------------------------------------->
-			<div class='row-fluid margin-B3 margin-T3' id='content-wrapper'>
-				<div class="span12">
-					<div class="span2 margin-smallT padding-left13">Email</div>
-					<div class="span4">
-						<input class='span10' type='text' id="ierdmail" maxlength="20" />
-					</div>
-
-					<div class="span2 margin-smallT padding-left13">入职时间</div>
-					<div class="span4">
-						<input class='span10 datapicker' type='text' id="ierworktime" maxlength="21" />
-					</div>
-				</div>
-			</div>
-			<!-------------------------------------------------------------人员详细添加模块end ---------------------------------------------------------------->
-			<!-------------------------------------------------------------人员详细添加模块start ---------------------------------------------------------------->
-			<div class='row-fluid margin-B3' id='content-wrapper'>
-				<div class="span12">
-					<div class="span2 margin-smallT padding-left13">工作岗位</div>
-					<div class="span4">
-						<!-- <input class='span10' type='text' id="ierworkPos" maxlength="20" /> -->
-						<select class='span10' id="ierworkPos">
-							<option value="高层管理">高层管理</option>
-							<option value="中层管理">中层管理</option>
-							<option value="综合管理">综合管理</option>
-							<option value="仓储">仓储</option>
-							<option value="分拣">分拣</option>
-							<option value="配送">配送</option>
-							<option value="信息系统维护">信息系统维护</option>
-							<option value="设备维护">设备维护</option>
-							<option value="">其他</option>
-
-						</select>
-
-
-					</div>
-
-					<div class="span2 margin-smallT padding-left13">技术职称</div>
-					<div class="span4">
-						<!-- <input class='span10' type='text' id="itertechn" maxlength="20" /> -->
-						<select class='span10' id="itertechn">
-							<option value="高级技术职称" selected="selected">高级技术职称</option>
-							<option value="中级技术职称">中级技术职称</option>
-							<option value="初级技术职称">初级技术职称</option>
-							<option value="">无技术职称</option>
-
-						</select>
-
-
-					</div>
-				</div>
-			</div>
-			<!-------------------------------------------------------------人员详细添加模块end ---------------------------------------------------------------->
-			<!-------------------------------------------------------------人员详细添加模块start ---------------------------------------------------------------->
-			<div class='row-fluid margin-B3' id='content-wrapper'>
-				<div class="span12">
-					<div class="span2 margin-smallT padding-left13">人员职务</div>
-					<div class="span4">
-						<!-- <input class='span10' type='text' id="ierjob" maxlength="20" /> -->
-						<select class='span10' id="ierjob">
-							<option value="物流中心主任" selected="selected">物流中心主任</option>
-							<option value="物流中心副主任">物流中心副主任</option>
-							<option value="处长">处长</option>
-							<option value="副处长">副处长</option>
-							<option value="">其他人员</option>
-
-						</select>
-					</div>
-
-					<div class="span2 margin-smallT padding-left13">政治面貌</div>
-					<div class="span4">
-						<!-- <input class='span10' type='text' id="iterpolitics" maxlength="20" /> -->
-						<select class='span10' id="iterpolitics">
-							<option value="中共党员" selected="selected">中共党员</option>
-							<option value="民主党派">民主党派</option>
-							<option value="共青团员">共青团员</option>
-							<option value="">群众</option>
-
-						</select>
-					</div>
-
-
-				</div>
-			</div>
-			<!-------------------------------------------------------------人员详细添加模块end ---------------------------------------------------------------->
-			<!-------------------------------------------------------------人员详细添加模块start ---------------------------------------------------------------->
-			<div class='row-fluid margin-B3' id='content-wrapper'>
-				<div class="span12">
-					<div class="span3 margin-smallT padding-left13" style="width: 108px;">国家技术资格</div>
-					<div class="span6">
-						<!-- <input class='span10' type='text' id="iternationalQNS"
-							maxlength="20" /> -->
-						<select class='span10' id="iternationalQNS">
-							<option value="高级物流师" selected="selected">高级物流师</option>
-							<option value="物流师">物流师</option>
-							<option value="助理物流师">助理物流师</option>
-							<option value="物流员">物流员</option>
-							<option value="烟草高级物流师">烟草高级物流师</option>
-							<option value="烟草物流师">烟草物流师</option>
-							<option value="烟草助理物流师">烟草助理物流师</option>
-							<option value="烟草物流员">烟草物流员</option>
-							<option value="">无职业资格</option>
-						</select>
-					</div>
-				</div>
-			</div>
-		</div>
-
-
-	</div>
-	<div class='modal-footer'>
-		<span id="inputError" style="color: #FF0000"></span>
-		<button class='btn btn-success icon-arrow-left' id="goBackButton"></button>
-		<button class='btn btn-primary' id="udatePersonDetail">确认</button>
-	</div>
-</div>
+<script type="text/javascript" src="../js/cust.js"></script>

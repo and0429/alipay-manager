@@ -37,6 +37,9 @@ public class CustController {
 	 */
 	@RequestMapping(value = "/custs", method = RequestMethod.POST)
 	public Object users(Cust cust) {
+		if (cust.getName() != null) {
+			cust.setName(cust.getName().trim());
+		}
 		return custService.getPager(cust);
 	}
 }
