@@ -15,6 +15,10 @@
 .box .box-header.box-header-small {
 	line-height: 13px;
 }
+
+.myselect {
+	width: 265px;
+}
 </style>
 
 <div class='container-fluid'>
@@ -39,9 +43,10 @@
 					</div>
 
 					<div class='box-content box-content-height' id="userMsgGroupListId">
-						<div class='dd scrollable' id="person">
-							<ol class='dd-list'>
-							</ol>
+						<div class="departTree">
+							<div id="deprTreeDiv" class='scrollable' data-scrollable-height='500'>
+								<ul id="distributorTree" class="ztree"></ul>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -84,7 +89,7 @@
 			</div>
 		</div>
 	</div>
-	
+
 	<!-- add department modal -->
 	<div class="modal fade hide" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
@@ -98,11 +103,10 @@
 					<form class="form form-horizontal" method="post" id='custForm'>
 						<div class='control-group margin-T30'>
 							<label class='control-label'>父级分销商 </label>
-							<div class='controls' id='distributor'>
-							</div>
+							<div class='controls' id='distributor'></div>
 						</div>
 						<div class='control-group margin-T30'>
-							<label class='control-label'>姓名</label>
+							<label class='control-label'>名称</label>
 							<div class='controls'>
 								<input class='span3' type="text" id='name' name="name" maxlength="20" required="required" />
 							</div>
@@ -128,7 +132,7 @@
 						<input type="hidden" name='id' id='id'>
 					</form>
 					<div>
-						<span id="inputError" style="color: #FF0000">dsad</span>
+						<span id="inputError" style="color: #FF0000"></span>
 					</div>
 				</div>
 				<div class="modal-footer">

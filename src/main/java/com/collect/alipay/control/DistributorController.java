@@ -48,6 +48,18 @@ public class DistributorController {
 	}
 
 	/**
+	 * 获取所有的分销商
+	 * 
+	 * @param flag
+	 *            标志
+	 * @return 获去到的集合
+	 */
+	@RequestMapping(value = "/getSelect", method = RequestMethod.GET)
+	public Object getAllDistributor(String getSelect) {
+		return distributorService.getAll(null);
+	}
+
+	/**
 	 * 增加一个实体
 	 * 
 	 * @param distributor
@@ -82,11 +94,11 @@ public class DistributorController {
 	 */
 	@RequestMapping(value = "/get/{id}", method = RequestMethod.GET)
 	public Object getById(@PathVariable String id) {
-		
+
 		Distributor d = distributorService.getById(id);
-		
+
 		System.out.println(d);
-		
+
 		return d;
 	}
 

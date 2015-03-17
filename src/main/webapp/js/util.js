@@ -19,5 +19,37 @@ util.dataTableLanguage = function() {
 			"previous" : "上一页"
 		}
 	};
-
 };
+
+/**
+ * 获取所有的分销商并且生成select元素
+ * 
+ * @param id
+ *            the id of select
+ * @param name
+ *            the name of select
+ * @param calzz
+ *            the class of select
+ */
+util.getAllDistributors = function(id, name, clazz) {
+
+	var selectHtml = "";
+
+	$.ajax({
+		'url' : '../distributor/getSelect.do',
+		'datType' : 'json',
+		'async' : false,
+		'success' : function(data, textStatus, jqXHR) {
+			selectHtml += "<select id='" + id + "' name='" + name + "' class='" + clazz + "'>";
+			selectHtml += "<option value='-1'>请选择分销商</option>";
+
+			for (var i = 0; i < data.length; i++) {
+				selectHtml += "<option value='" + data[i].id + "'>" + data[i].name + "</option>";
+			}
+
+			selectHtml += "</select>";
+		}
+	});
+	return selectHtml;
+
+}
