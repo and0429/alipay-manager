@@ -14,6 +14,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.collect.alipay.domain.Distributor;
+import com.collect.alipay.util.DistributorUtils;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(value = { "classpath:beans.xml" })
@@ -59,17 +60,23 @@ public class DistributorServiceTest {
 		distributor.setOpen(true);
 
 		list.add(distributor);
-		
-		
+
 		System.out.println(JSONArray.fromObject(list).toString());
-		
-		
-		
+
 	}
 
 	@Test
-	public void testGetPager() {
-		fail("Not yet implemented");
-	}
+	public void testgetAllNoChildDistributorById() {
 
+		List<Distributor> list = distributorService.getAll(null);
+
+		List<String> ids = DistributorUtils.getAllNoChildDistributorById(list, "93d16e0e70d346e7bf0509b2f076c640");
+
+		System.out.println(ids.size());
+		
+		for (int i = 0; i < ids.size(); i++) {
+			System.out.println(ids.get(i));
+		}
+
+	}
 }
