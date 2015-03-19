@@ -34,7 +34,7 @@ public class DistributorUtils {
 	 * @param distribuotrIdList
 	 * @param id
 	 */
-	public static void getAllNoChildDistributorById(List<Distributor> disList, List<String> distribuotrIdList, String id) {
+	private static void getAllNoChildDistributorById(List<Distributor> disList, List<String> distribuotrIdList, String id) {
 
 		for (int i = 0; i < disList.size(); i++) {
 			Distributor distributor = disList.get(i);
