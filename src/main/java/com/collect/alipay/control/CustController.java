@@ -68,10 +68,7 @@ public class CustController {
 	 */
 	@RequestMapping(value = "/custs", method = RequestMethod.POST)
 	public Object users(Cust cust, String distributorId) {
-		if (cust.getName() != null) {
-			cust.setName(cust.getName().trim());
-		}
-		return custService.getPager(cust);
+		return custService.getPagerWithMapCodition(cust, distributorId);
 	}
 
 	/**

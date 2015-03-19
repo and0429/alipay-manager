@@ -3,7 +3,7 @@ var cust = new Object();
 cust.dataTable = undefined;
 cust.addOrEditFlag = undefined;
 cust.zTreeObj = undefined;
-cust.distributorId = undefined;
+cust.distributorId = '0'// undefined;
 
 /**
  * main method
@@ -81,9 +81,9 @@ cust.loaddataTable = function() {
 cust.addButton = function() {
 
 	var html = "";
-	html += "<input type='search' id='search' placeholder='请输入用户名'/>";
+	html += "<input type='search' id='search' placeholder='请输入名称查询'/>";
 	html += "<button class='btn btn-primary' id='searchbtu' style='margin-bottom: 10px; margin-left: 10px;'>查询</button>"
-	html += "<button class='btn btn-warning' id='addbtn' style='margin-bottom: 10px; margin-left: 10px;'>新增</button>";
+	html += "<button class='btn btn-warning' id='addbtn' disabled='disabled' style='margin-bottom: 10px; margin-left: 10px;'>新增</button>";
 	$('.toolbar').html(html);
 };
 
@@ -124,6 +124,8 @@ cust.clickAddBtn = function() {
 		$('#myModalLabel').html('新增商户');
 		$('#custForm').attr('action', '../cust/add.do');
 		$('#distributor').html(util.getAllDistributors('distributorSelect', 'distributorId', 'myselect'));
+		$('#distributorSelect').val(cust.distributorId);
+		$('#distributorSelect').attr('disabled', 'disabled');
 		$('#myModal').modal({
 			'backdrop' : 'static',
 			'show' : true
@@ -259,7 +261,8 @@ cust.loadZtree = function() {
 		view : {
 			selectedMulti : false,
 			showTitle : false,
-			dblClickExpand : false
+			dblClickExpand : false,
+			showLine : false
 		},
 		edit : {
 			enable : false
@@ -270,13 +273,18 @@ cust.loadZtree = function() {
 			}
 		},
 		callback : {
-			// before
+			beforeExpand : false,
 			beforeClick : function(treeId, treeNode) {
 				return true;
 			},
 			onClick : function(event, treeId, treeNode) {
 				cust.distributorId = treeNode.id
 				cust.dataTable.draw();
+				if (!treeNode.isParent) {
+					$('#addbtn').removeAttr('disabled');
+				}else{
+					$('#addbtn').attr('disabled', 'disabled');
+				}
 			}
 		}
 	};

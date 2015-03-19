@@ -11,8 +11,9 @@ import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.collect.alipay.domain.Distributor;
+import com.collect.alipay.control.dto.DataTableDto;
 import com.collect.alipay.domain.Cust;
+import com.collect.alipay.domain.Distributor;
 import com.collect.alipay.service.CustService;
 import com.collect.alipay.util.UUIDUtil;
 
@@ -61,6 +62,11 @@ public class UserServiceImplTest {
 
 	@Test
 	public void test_002_Update() {
+		
+		DataTableDto<Cust> c =this.service.getPagerWithMapCodition(new Cust(), "980265a24aa747b7a9eee079f78b017c");
+		
+		System.out.println(c);
+		
 	}
 
 	@Test

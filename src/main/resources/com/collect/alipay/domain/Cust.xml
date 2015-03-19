@@ -54,6 +54,18 @@
 		limit #{start}, #{length}
 	</select>
 
+	<!-- ===================================查询分销商及其子分销商的用户============================= -->
+	<select id="getPagerWithMapCodition" resultMap="cust">
+		select * from t_cust c left join t_distributor d on c.c_distributor_id = d.d_id
+		<include refid="whereCondition2" />
+		limit #{cust.start}, #{cust.length}
+	</select>
+	<select id="getPagerWithMapCoditionCount" resultType="int">
+		select count(c_id) from t_cust
+		<include refid="whereCondition2" />
+	</select>
+	<!-- ================================================================================ -->
+
 	<!-- 获取记录总数 -->
 	<select id="getCount" resultType="int">
 		select count(c_id) from t_cust
@@ -97,5 +109,26 @@
 			</if>
 		</where>
 	</sql>
+
+	<!-- where condition -->
+	<sql id="whereCondition2">
+		<where>
+			<if test="cust.name != null and cust.name != ''">
+				c_name like '%${cust.name}%'
+			</if>
+			<if test="distributorIds.size() > 0">
+				and c_distributor_id in
+				<foreach item="item" collection="distributorIds" open="(" separator="," close=")">
+					#{item}
+				</foreach>
+			</if>
+		</where>
+	</sql>
+
+
+
+
+
+
 
 </mapper>
