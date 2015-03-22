@@ -6,6 +6,8 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import org.apache.commons.codec.digest.DigestUtils;
+
 import com.collect.alipay.control.dto.DataTableDto;
 import com.collect.alipay.domain.Cust;
 import com.collect.alipay.domain.Distributor;
@@ -36,6 +38,8 @@ public class LoginerServiceImpl extends BaseServiceImpl<Loginer> implements Logi
 	 */
 	@Override
 	public boolean check(Loginer loginer) {
+
+		loginer.setPassword(DigestUtils.md5Hex(loginer.getPassword()));
 
 		Loginer loginerResult = sqlSession.selectOne(clazz.getName() + ".check", loginer);
 
@@ -104,11 +108,15 @@ public class LoginerServiceImpl extends BaseServiceImpl<Loginer> implements Logi
 			switch (loginer2.getRole()) {
 			case 2:
 				Distributor dis = disService.getById(loginer2.getCustOrDistributorId());
-				loginer2.setCustOrDistributorName(dis.getName());
+				if (dis != null) {
+					loginer2.setCustOrDistributorName(dis.getName());
+				}
 				break;
 			case 3:
 				Cust cust = custService.getById(loginer2.getCustOrDistributorId());
-				loginer2.setCustOrDistributorName(cust.getName());
+				if (cust != null) {
+					loginer2.setCustOrDistributorName(cust.getName());
+				}
 				break;
 			}
 		}

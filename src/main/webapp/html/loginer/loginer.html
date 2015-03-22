@@ -80,7 +80,7 @@
 		</div>
 	</div>
 
-	<!-- add department modal -->
+	<!-- add loginer modal -->
 	<div class="modal fade hide" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
@@ -111,9 +111,9 @@
 								<input class='span3' type="text" id='name' name="username" maxlength="20" required="required" />
 							</div>
 						</div>
+						<input type="hidden" name='id' id='id'> <input style="display: none" />
+					</form>
 				</div>
-				<input type="hidden" name='id' id='id'>
-				</form>
 				<div>
 					<span id="inputError" style="color: #FF0000"></span>
 				</div>
@@ -121,6 +121,55 @@
 			<div class="modal-footer">
 				<button type="button" class='btn btn-info' data-dismiss="modal">取消</button>
 				<button type="button" class='btn btn-primary' id="saveBtn">确认</button>
+			</div>
+		</div>
+	</div>
+
+	<!-- update loginer modal -->
+	<div class="modal fade hide" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<i class="fa fa-plus-square"></i>
+					<h4 class="modal-title" id="myModalLabel">修改密码</h4>
+				</div>
+				<div class="modal-body">
+					<form class="form form-horizontal" method="post" id='updateForm'>
+						<div class='control-group margin-T30'>
+							<label class='control-label'>用户名</label>
+							<div class='controls'>
+								<input class='span3' type="text" id='updateUsername' name="username" readonly="readonly" maxlength="20" required="required" />
+							</div>
+						</div>
+						<div class='control-group margin-T30'>
+							<label class='control-label'>旧密码</label>
+							<div class='controls'>
+								<input class='span3' type="password" id='updatePassword' name="password" maxlength="20" required="required" />
+							</div>
+						</div>
+						<div class='control-group margin-T30'>
+							<label class='control-label'>新密码</label>
+							<div class='controls'>
+								<input class='span3' type="password" id='newpassword' name="newpassword" maxlength="20" required="required" />
+							</div>
+						</div>
+						<div class='control-group margin-T30'>
+							<label class='control-label'>确认密码</label>
+							<div class='controls'>
+								<input class='span3' type="password" id='newpassword2' name="newpassword2" maxlength="20" required="required" />
+							</div>
+						</div>
+						<input type="hidden" name='id' id='updateId'>
+					</form>
+				</div>
+				<div>
+					<span id="inputError2" style="color: #FF0000"></span>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class='btn btn-info' data-dismiss="modal">取消</button>
+				<button type="button" class='btn btn-primary' id="updateBtn">确认</button>
 			</div>
 		</div>
 	</div>

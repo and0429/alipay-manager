@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -144,6 +145,57 @@ public class LoginController {
 		loginer.setId(UUIDUtil.randomUUID());
 		int result = loginerService.save(loginer);
 		return new Status(result);
+	}
+
+	/**
+	 * delete
+	 * 
+	 * @param id
+	 * @return
+	 */
+	@RequestMapping(value = "/loginer/delete/{id}", method = RequestMethod.GET)
+	@ResponseBody
+	public Object delete(@PathVariable String id) {
+		int result = loginerService.delete(id);
+		return new Status(result);
+	}
+
+	/**
+	 * 修改
+	 * 
+	 * @param loginer
+	 * @param newpassword
+	 * @return
+	 */
+	@RequestMapping(value = "/loginer/update", method = RequestMethod.POST)
+	@ResponseBody
+	public Object update(Loginer loginer, String newpassword) {
+		if (loginerService.check(loginer)) {
+			loginer.setPassword(DigestUtils.md5Hex(newpassword));
+
+			int result = loginerService.update(loginer);
+			return new Status(result);
+
+		} else {
+			return new Status(0, "旧密码错误！");
+		}
+	}
+
+	/**
+	 * 重置密码
+	 * 
+	 * @param id
+	 *            id
+	 * @return
+	 */
+	@RequestMapping(value = "/loginer/restPassword/{id}", method = RequestMethod.GET)
+	@ResponseBody
+	public Object restPassword(Loginer loginer) {
+		loginer.setPassword(DigestUtils.md5Hex("111111"));
+
+		int result = loginerService.update(loginer);
+		return new Status(result);
+
 	}
 
 }
