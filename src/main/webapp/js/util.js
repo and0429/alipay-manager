@@ -51,5 +51,50 @@ util.getAllDistributors = function(id, name, clazz) {
 		}
 	});
 	return selectHtml;
+}
 
+/**
+ * 加载用户管理页面的下拉框
+ */
+util.getLoginerSelect = function(id, name, clazz, distributorId, hasChild) {
+
+	var selectHtml = "";
+
+	switch (hasChild) {
+	case 1:
+		$.ajax({
+			'url' : '../distributor/getSelect/' + distributorId + '.do',
+			'datType' : 'json',
+			'async' : false,
+			'success' : function(data, textStatus, jqXHR) {
+				selectHtml += "<select id='" + id + "' name='" + name + "' class='" + clazz + "'>";
+
+				for (var i = 0; i < data.length; i++) {
+					selectHtml += "<option value='" + data[i].id + "'>" + data[i].name + "</option>";
+				}
+
+				selectHtml += "</select>";
+			}
+		})
+		break;
+
+	case 0:
+		$.ajax({
+			'url' : '../cust/getSelect/' + distributorId + '.do',
+			'datType' : 'json',
+			'async' : false,
+			'success' : function(data, textStatus, jqXHR) {
+				selectHtml += "<select id='" + id + "' name='" + name + "' class='" + clazz + "'>";
+
+				for (var i = 0; i < data.length; i++) {
+					selectHtml += "<option value='" + data[i].id + "'>" + data[i].name + "</option>";
+				}
+
+				selectHtml += "</select>";
+			}
+		})
+		break;
+	}
+
+	return selectHtml
 }

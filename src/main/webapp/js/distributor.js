@@ -191,16 +191,21 @@ cust.subMitForm = function() {
  */
 cust.deleteNode = function(id) {
 
-	$.ajax({
-		'url' : '../distributor/delete/' + id + '.do',
-		'type' : 'get',
-		'dataType' : 'json',
-		'success' : function(data) {
-			if (data.code !== 0) {
-				cust.loadZtree();
+	if (window.confirm('您确定要删除此分销商吗？')) {
+
+		$.ajax({
+			'url' : '../distributor/delete/' + id + '.do',
+			'type' : 'get',
+			'dataType' : 'json',
+			'success' : function(data) {
+				if (data.code !== 0) {
+					cust.loadZtree();
+				} else {
+					alert(data.msg);
+				}
 			}
-		}
-	});
+		});
+	}
 }
 
 /**
@@ -245,15 +250,15 @@ cust.updateNode = function(id) {
 cust.addInfo = function(treeNode) {
 
 	if (treeNode) {
-		if (treeNode.pId === '0') {
+		if (treeNode.pId === '0' || treeNode.pId === null) {
 			$('#distributorinfo').html('无');
 		} else {
 			$('#distributorinfo').html(treeNode.pPistributor.name);
+			$('#nameinfo').html(treeNode.name);
+			$('#managerinfo').html(treeNode.manager);
+			$('#telinfo').html(treeNode.tel);
+			$('#addrinfo').html(treeNode.addr);
 		}
-		$('#nameinfo').html(treeNode.name);
-		$('#managerinfo').html(treeNode.manager);
-		$('#telinfo').html(treeNode.tel);
-		$('#addrinfo').html(treeNode.addr);
 	}
 };
 

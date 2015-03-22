@@ -1,5 +1,7 @@
 package com.collect.alipay.service;
 
+import java.util.List;
+
 import com.collect.alipay.domain.Distributor;
 
 /**
@@ -18,5 +20,13 @@ public interface DistributorService extends BaseService<Distributor> {
 	 * @return 保存后影响的行数
 	 */
 	int saveAndUpdateParentStatus(Distributor distributor);
+
+	/**
+	 * 根据父级Id查询松油的分销商
+	 * 
+	 * @param parentId
+	 * @return
+	 */
+	List<Distributor> getByParentId(String parentId);
 
 }

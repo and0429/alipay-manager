@@ -101,4 +101,15 @@ public class CustController {
 		return new Status(custService.update(cust));
 	}
 
+	/**
+	 * 记载select
+	 * 
+	 * @param distributorId 分销商id
+	 * @return
+	 */
+	@RequestMapping(value = "/getSelect/{distributorId}")
+	public Object getSelect(@PathVariable String distributorId) {
+		return custService.getByDistributorId(distributorId);
+	}
+
 }

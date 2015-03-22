@@ -38,52 +38,65 @@ public class Cust extends BaseModel {
 	 */
 	private Distributor distributor;
 
-	public String getId() {
-		return id;
-	}
-
-	public void setId(String id) {
-		this.id = id;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
+	/**
+	 * 用于zTree加载
+	 */
+	private String pId;
 
 	public String getAddr() {
 		return addr;
-	}
-
-	public void setAddr(String addr) {
-		this.addr = addr;
-	}
-
-	public String getManager() {
-		return manager;
-	}
-
-	public void setManager(String manager) {
-		this.manager = manager;
-	}
-
-	public String getTel() {
-		return tel;
-	}
-
-	public void setTel(String tel) {
-		this.tel = tel;
 	}
 
 	public Distributor getDistributor() {
 		return distributor;
 	}
 
+	public String getId() {
+		return id;
+	}
+
+	public String getManager() {
+		return manager;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public String getpId() {
+		return pId;
+	}
+
+	public String getTel() {
+		return tel;
+	}
+
+	public void setAddr(String addr) {
+		this.addr = addr;
+	}
+
 	public void setDistributor(Distributor distributor) {
 		this.distributor = distributor;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public void setManager(String manager) {
+		this.manager = manager;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public void setpId(String pId) {
+		this.pId = pId;
+	}
+
+	public void setTel(String tel) {
+		this.tel = tel;
 	}
 
 }

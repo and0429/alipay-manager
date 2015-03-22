@@ -66,6 +66,17 @@
 		c.d_parent_id = p.d_id
 	</select>
 
+	<!-- get by parentId -->
+	<select id="getByParentId" resultMap="distributorSimple">
+		select d_id, d_name from t_distributor where d_parent_id = #{parentId}
+	</select>
+
+	<!-- simple resultMap -->
+	<resultMap type="Distributor" id="distributorSimple">
+		<id column="d_id" property="id" />
+		<result column="d_name" property="name" />
+	</resultMap>
+
 	<!-- result map -->
 	<resultMap type="Distributor" id="distributor">
 		<id column="c_d_id" property="id" />

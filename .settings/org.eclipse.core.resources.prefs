@@ -3,6 +3,7 @@ encoding//src/main/java=UTF-8
 encoding//src/main/resources=UTF-8
 encoding//src/main/webapp/html/cust/cust.html=UTF-8
 encoding//src/main/webapp/html/distributor/distributor.html=UTF-8
+encoding//src/main/webapp/html/loginer/loginer.html=UTF-8
 encoding//src/test/java=UTF-8
 encoding//src/test/java/com/collect/alipay/service/impl/UserServiceImplTest.java=UTF-8
 encoding/<project>=UTF-8

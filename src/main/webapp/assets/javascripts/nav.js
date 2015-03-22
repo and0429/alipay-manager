@@ -72,7 +72,8 @@
 		// 页面索引
 		pageControl.pageMap = {
 			custManage : '../html/cust/cust.html',
-			distributorManage : '../html/distributor/distributor.html'
+			distributorManage : '../html/distributor/distributor.html',
+			loginer : '../html/loginer/loginer.html'
 		};
 
 		// 默认首先加载信息看板页面

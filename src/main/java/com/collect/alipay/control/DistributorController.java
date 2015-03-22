@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.collect.alipay.control.dto.Status;
+import com.collect.alipay.domain.Cust;
 import com.collect.alipay.domain.Distributor;
+import com.collect.alipay.service.CustService;
 import com.collect.alipay.service.DistributorService;
 
 /**
@@ -26,6 +28,9 @@ public class DistributorController {
 	@Inject
 	private DistributorService distributorService;
 
+	@Inject
+	private CustService custService;
+
 	/**
 	 * 获取Ztree数据
 	 * 
@@ -38,8 +43,9 @@ public class DistributorController {
 
 		Distributor distributor = new Distributor();
 		distributor.setId("0");
-		distributor.setName("全部");
+		distributor.setName("西北总代理");
 		distributor.setpId("-1");
+		distributor.setHasChild(1);
 		distributor.setOpen(true);
 
 		list.add(distributor);
@@ -59,6 +65,19 @@ public class DistributorController {
 		return distributorService.getAll(null);
 	}
 
+	
+	/**
+	 * 获取所有的分销商
+	 * 
+	 * @param flag
+	 *            标志
+	 * @return 获去到的集合
+	 */
+	@RequestMapping(value = "/getSelect/{parentId}", method = RequestMethod.GET)
+	public Object getDistributor(@PathVariable String parentId) {
+		return distributorService.getByParentId(parentId);
+	}
+	
 	/**
 	 * 增加一个实体
 	 * 
@@ -81,6 +100,11 @@ public class DistributorController {
 	 */
 	@RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
 	public Object delete(@PathVariable String id) {
+
+		List<Cust> custs = custService.getByDistributorId(id);
+		if (custs.size() > 0) {
+			return new Status(0, "该分销商下有商户，不能删除！");
+		}
 		int rusult = distributorService.delete(id);
 		return new Status(rusult);
 	}

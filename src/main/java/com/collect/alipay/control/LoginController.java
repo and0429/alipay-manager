@@ -3,6 +3,7 @@ package com.collect.alipay.control;
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
@@ -11,8 +12,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.collect.alipay.control.dto.Status;
 import com.collect.alipay.domain.Loginer;
 import com.collect.alipay.service.LoginerService;
+import com.collect.alipay.util.UUIDUtil;
 
 /**
  * 登录控制器
@@ -95,4 +98,52 @@ public class LoginController {
 		Loginer loginer = (Loginer) session.getAttribute("loginer");
 		return loginer;
 	}
+
+	/**
+	 * 加载树的数据
+	 * 
+	 * @return
+	 */
+	@RequestMapping(value = "/login/getZtree", method = RequestMethod.GET)
+	@ResponseBody
+	public Object getZtreeData() {
+		return loginerService.getZtreeData();
+	}
+
+	/**
+	 * 根据条件获取登陆者列表
+	 * 
+	 * @param loginer
+	 *            封装条件
+	 * @return 数据封装对象
+	 */
+	@RequestMapping(value = "/login/loginers", method = RequestMethod.POST)
+	@ResponseBody
+	public Object getLoginers(Loginer loginer) {
+		return loginerService.getLoginers(loginer);
+	}
+
+	/**
+	 * 新增
+	 * 
+	 * @param loginer
+	 *            封装了实体对象的字段
+	 * @return 状态
+	 */
+	@RequestMapping(value = "/loginer/add", method = RequestMethod.POST)
+	@ResponseBody
+	public Object add(Loginer loginer) {
+
+		Loginer longer = loginerService.getByUsername(loginer.getUsername());
+		if (longer != null) {
+			return new Status(0, "用户名已存在");
+		}
+
+		String passwordMd5 = DigestUtils.md5Hex("111111");
+		loginer.setPassword(passwordMd5);
+		loginer.setId(UUIDUtil.randomUUID());
+		int result = loginerService.save(loginer);
+		return new Status(result);
+	}
+
 }

@@ -12,21 +12,54 @@
 		l_username = #{username} and l_password = #{password}
 	</select>
 
-	<!-- save e entity -->
-	<insert id="save" parameterType="Loginer">
-		insert into t_loginer (l_id,
-		l_username, l_password) values (#{id}, #{username}, #{password})
+	<insert id="save">
+		insert into t_loginer (l_id, l_username, l_password, l_role, l_custOrDistributorId)
+		values (
+		#{id},
+		#{username},
+		#{password},
+		#{role},
+		#{custOrDistributorId}
+		)
 	</insert>
 
-	<!-- delete a entity by id -->
-	<delete id="delete" parameterType="string">
-		delete from t_loginer where
-		l_id = #{id}
-	</delete>
+	<!-- get pager data -->
+	<select id="getpager" resultMap="loginer">
+		select * from t_loginer
+		<where>
+			<if test="username != null and username != ''">
+				l_username like '%${username}%'
+			</if>
+			<if test="custOrDistributorId != null">
+				and l_custOrDistributorId = #{custOrDistributorId}
+			</if>
+		</where>
+		limit #{start}, #{length}
+	</select>
+
+	<!-- get count with condition -->
+	<select id="getCountWithCondition" resultType="int">
+		select count(l_id) from t_loginer
+		<where>
+			<if test="username != null and username != ''">
+				l_username like '${username}'
+			</if>
+			<if test="custOrDistributorId != null">
+				and l_custOrDistributorId = #{custOrDistributorId}
+			</if>
+		</where>
+	</select>
+
+	<!-- get by Usernmae -->
+	<select id="getByUsername" resultMap="loginer">
+		select * from t_loginer where l_username = #{username}
+	</select>
 
 	<resultMap type="Loginer" id="loginer">
 		<id column="l_id" property="id" />
 		<result column="l_username" property="username" />
 		<result column="l_password" property="password" />
+		<result column="l_role" property="role" />
+		<result column="l_custOrDistributorId" property="custOrDistributorId" />
 	</resultMap>
 </mapper>

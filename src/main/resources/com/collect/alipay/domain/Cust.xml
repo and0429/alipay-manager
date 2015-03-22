@@ -77,12 +77,23 @@
 		<include refid="whereCondition" />
 	</select>
 
+	<!-- load all cust -->
+	<select id="getAll" resultMap="cust">
+		select * from t_cust
+	</select>
+
+	<!-- get cust list by distribuotr id -->
+	<select id="getByDistributorId" resultMap="cust">
+		select * from t_cust where c_distributor_id = #{distributorId}
+	</select>
+
 	<resultMap type="Cust" id="cust">
 		<id column="c_id" property="id" />
 		<result column="c_name" property="name" />
 		<result column="c_manager" property="manager" />
 		<result column="c_tel" property="tel" />
 		<result column="c_addr" property="addr" />
+		<result column="c_distributor_id" property="pId" />
 		<association property="distributor" javaType="Distributor">
 			<id column="d_id" property="id" />
 			<result column="d_name" property="name" />

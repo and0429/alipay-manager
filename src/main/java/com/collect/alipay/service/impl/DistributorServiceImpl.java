@@ -3,6 +3,8 @@
  */
 package com.collect.alipay.service.impl;
 
+import java.util.List;
+
 import javax.inject.Named;
 
 import com.collect.alipay.domain.Distributor;
@@ -36,6 +38,18 @@ public class DistributorServiceImpl extends BaseServiceImpl<Distributor> impleme
 		this.update(dis);
 
 		return result;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.collect.alipay.service.DistributorService#getByParentId(java.lang
+	 * .String)
+	 */
+	@Override
+	public List<Distributor> getByParentId(String parentId) {
+		return sqlSession.selectList(clazz.getName() + ".getByParentId", parentId);
 	}
 
 }

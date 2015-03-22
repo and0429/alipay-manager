@@ -1,5 +1,7 @@
 package com.collect.alipay.service;
 
+import java.util.List;
+
 import com.collect.alipay.control.dto.DataTableDto;
 import com.collect.alipay.domain.Cust;
 
@@ -21,5 +23,13 @@ public interface CustService extends BaseService<Cust> {
 	 * @return table对象
 	 */
 	DataTableDto<Cust> getPagerWithMapCodition(Cust cust, String distributorId);
+
+	/**
+	 * 根据分销商Id查找商户
+	 * 
+	 * @param id
+	 * @return
+	 */
+	List<Cust> getByDistributorId(String id);
 
 }

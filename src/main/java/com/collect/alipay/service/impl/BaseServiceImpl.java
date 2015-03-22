@@ -124,13 +124,16 @@ public abstract class BaseServiceImpl<T> implements BaseService<T> {
 	public DataTableDto<T> getPager(T condition) {
 
 		List<T> list = this.getAll(condition);
+		
 		int total = this.getCount(condition);
 		int draw = 0;
 		if (condition instanceof BaseModel) {
 			draw = ((BaseModel) condition).getDraw();
 		}
 
-		return new DataTableDto<T>(draw, total, list);
+		DataTableDto<T> d = new DataTableDto<T>(draw, total, list);
+		
+		return d;//new DataTableDto<T>(draw, total, list);
 	}
 
 }

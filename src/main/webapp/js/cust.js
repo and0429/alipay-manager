@@ -31,7 +31,7 @@ cust.loaddataTable = function() {
 			'type' : 'POST',
 			'data' : function(d) {
 				return $.extend(d, {
-					'name' : $('#search').val(),
+					'name' : $.trim($('#search').val()),
 					'distributorId' : cust.distributorId
 				});
 			}
@@ -100,7 +100,7 @@ cust.searchEvnet = function() {
 			cust.dataTable.draw();
 		}
 	});
-}
+};
 
 /**
  * show or hide edit and delete log
@@ -148,33 +148,27 @@ cust.submitForm = function() {
 
 	$('#custForm').ajaxSubmit({
 		'dataType' : 'json',
+		'data' : {
+			'distributorId' : $('#distributorSelect').val()
+		},
 		'beforeSubmit' : function(arr, jquery) {
 
-			var int = -1;
-			if (!cust.addOrEditFlag) {
-				int += 1
-				if (arr[int + 0].value === '-1') {
-					$('#distributorSelect')[0].focus();
-					$('#inputError').html('请选择父级分销商');
-					return false;
-				}
-			}
-			if (arr[int + 1].value === '') {
+			if (arr[0].value === '') {
 				$('#name')[0].focus();
 				$('#inputError').html('请填写名称');
 				return false;
 			}
-			if (arr[int + 2].value === '') {
+			if (arr[1].value === '') {
 				$('#manager')[0].focus();
 				$('#inputError').html('请填写商户负责人');
 				return false;
 			}
-			if (arr[int + 3].value === '') {
+			if (arr[2].value === '') {
 				$('#tel')[0].focus();
 				$('#inputError').html('请填写联系电话');
 				return false;
 			}
-			if (arr[int + 4].value === '') {
+			if (arr[3].value === '') {
 				$('#addr')[0].focus();
 				$('#inputError').html('请填写联系地址');
 				return false;
@@ -214,7 +208,7 @@ cust.clickEdit = function() {
 			'success' : function(data) {
 				if (data) {
 					$('#distributorSelect').val((data.distributor.id) ? data.distributor.id : '-1');
-					$('#distributorSelect').attr('disabled', 'disabled')
+					$('#distributorSelect').attr('disabled', 'disabled');
 					$('#name').val(data.name);
 					$('#id').val(id);
 					$('#tel').val(data.tel);
@@ -282,7 +276,7 @@ cust.loadZtree = function() {
 				cust.dataTable.draw();
 				if (!treeNode.isParent) {
 					$('#addbtn').removeAttr('disabled');
-				}else{
+				} else {
 					$('#addbtn').attr('disabled', 'disabled');
 				}
 			}
