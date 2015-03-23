@@ -22,7 +22,7 @@ public interface LoginerService extends BaseService<Loginer> {
 	 *            登录用户
 	 * @return 正确返回true，否则返回false;
 	 */
-	boolean check(Loginer loginer);
+	Loginer check(Loginer loginer);
 
 	/**
 	 * 根据用户名查找一个实体

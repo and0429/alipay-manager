@@ -37,17 +37,12 @@ public class LoginerServiceImpl extends BaseServiceImpl<Loginer> implements Logi
 	 * .Loginer)
 	 */
 	@Override
-	public boolean check(Loginer loginer) {
+	public Loginer check(Loginer loginer) {
 
 		loginer.setPassword(DigestUtils.md5Hex(loginer.getPassword()));
 
-		Loginer loginerResult = sqlSession.selectOne(clazz.getName() + ".check", loginer);
+		 return sqlSession.selectOne(clazz.getName() + ".check", loginer);
 
-		if (loginerResult != null) {
-			return true;
-		}
-
-		return false;
 	}
 
 	/*

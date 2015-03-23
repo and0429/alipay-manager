@@ -61,14 +61,14 @@ public class LoginController {
 			return "index";
 		}
 
-		boolean result = loginerService.check(loginer);
+		Loginer LoginerResult = loginerService.check(loginer);
 
-		if (!result) {
+		if (LoginerResult == null) {
 			loginer.setLoginMessage(LOGIN_ERROR);
 			return "index";
 		}
 
-		session.setAttribute("loginer", loginer);
+		session.setAttribute("loginer", LoginerResult);
 
 		return "redirect:html/navigation.html";
 
@@ -170,7 +170,7 @@ public class LoginController {
 	@RequestMapping(value = "/loginer/update", method = RequestMethod.POST)
 	@ResponseBody
 	public Object update(Loginer loginer, String newpassword) {
-		if (loginerService.check(loginer)) {
+		if (loginerService.check(loginer) != null) {
 			loginer.setPassword(DigestUtils.md5Hex(newpassword));
 
 			int result = loginerService.update(loginer);

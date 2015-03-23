@@ -34,7 +34,7 @@ public class LoginerServiceTest {
 
 		service.save(loginer);
 
-		boolean flag = service.check(loginer);
+		boolean flag = service.check(loginer) != null;
 
 		Assert.assertEquals(true, flag);
 
