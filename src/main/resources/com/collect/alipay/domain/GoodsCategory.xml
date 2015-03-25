@@ -14,7 +14,9 @@
 			</if>
 		</where>
 		order by gc_id
-		limit #{start}, #{length}
+		<if test="start != null and length != null">
+			limit #{start}, #{length}
+		</if>
 	</select>
 
 

@@ -16,7 +16,7 @@ public class Status {
 	/**
 	 * 状态信息
 	 */
-	private String msg = "ok";
+	private String msg = "error";
 
 	public int getCode() {
 		return code;

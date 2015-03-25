@@ -74,7 +74,8 @@
 			custManage : '../html/cust/cust.html',
 			distributorManage : '../html/distributor/distributor.html',
 			loginer : '../html/loginer/loginer.html',
-			goodsCategory : '../html/goodsCategory/goodsCategory.html'
+			goodsCategory : '../html/goodsCategory/goodsCategory.html',
+			payOnline : '../html/payOnline/payOnline.html'
 		};
 
 		// 默认首先加载信息看板页面

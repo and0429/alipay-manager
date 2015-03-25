@@ -51,6 +51,25 @@ public class GoodsCategoryController {
 	}
 
 	/**
+	 * 获取所有
+	 * 
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value = "/all", method = RequestMethod.GET)
+	public Object getAll(GoodsCategory gc, Model model) {
+		Loginer loginer = (Loginer) model.asMap().get("loginer");
+		if (loginer == null) {
+			return new Status();
+		}
+
+		gc.setCustId(loginer.getCustOrDistributorId());
+
+		return goodsCategoryService.getAll(gc);
+
+	}
+
+	/**
 	 * 新增
 	 * 
 	 * @param gc
