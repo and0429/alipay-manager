@@ -33,6 +33,11 @@ public class Pay extends BaseModel {
 	private float amount;
 
 	/**
+	 * 0:支付宝<br/>
+	 * 1:现金
+	 */
+	private Integer payWay;
+	/**
 	 * 支付日期
 	 */
 	private String payDate;
@@ -66,6 +71,14 @@ public class Pay extends BaseModel {
 		this.amount = amount;
 	}
 
+	public String getLoginer() {
+		return loginer;
+	}
+
+	public void setLoginer(String loginer) {
+		this.loginer = loginer;
+	}
+
 	public String getPayDate() {
 		return payDate;
 	}
@@ -74,12 +87,12 @@ public class Pay extends BaseModel {
 		this.payDate = payDate;
 	}
 
-	public String getLoginer() {
-		return loginer;
+	public Integer getPayWay() {
+		return payWay;
 	}
 
-	public void setLoginer(String loginer) {
-		this.loginer = loginer;
+	public void setPayWay(Integer payWay) {
+		this.payWay = payWay;
 	}
 
 }
