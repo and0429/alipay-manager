@@ -39,7 +39,7 @@ public class LoginFilter implements Filter {
 
 		String requestUrl = req.getRequestURI();
 
-		if (requestUrl.endsWith("login.do") || requestUrl.contains("/assets")) {
+		if (requestUrl.endsWith("login.do") || requestUrl.contains("/assets") || requestUrl.endsWith("getloginer.do") || requestUrl.endsWith(".js")) {
 			chain.doFilter(request, response);
 		} else {
 			Loginer lognier = (Loginer) session.getAttribute("loginer");

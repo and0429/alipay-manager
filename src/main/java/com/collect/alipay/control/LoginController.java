@@ -4,6 +4,7 @@ import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.codec.digest.DigestUtils;
+import org.codehaus.jackson.map.annotate.JsonView;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
@@ -95,6 +96,7 @@ public class LoginController {
 	 */
 	@RequestMapping(value = "/getloginer", method = RequestMethod.GET)
 	@ResponseBody
+	@JsonView(Loginer.WithoutPasswordView.class)
 	public Loginer getLoginer(HttpSession session) {
 		Loginer loginer = (Loginer) session.getAttribute("loginer");
 		return loginer;

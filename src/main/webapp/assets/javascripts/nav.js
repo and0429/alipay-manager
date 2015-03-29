@@ -63,10 +63,26 @@
 				type : "GET",
 				url : pageControl.pageMap["" + pageName + ""],
 				async : false,
-				dataType : "html"
-			}).done(function(data) {
-				$("#content").empty();
-				$("#content").append(data);
+				dataType : "html",
+				beforeSend : function() {
+					$.ajax({
+						type : "GET",
+						url : "../getloginer.do",
+						dataType : "json",
+						async : false,
+						success : function(data) {
+							if (data !== null) {	
+								return true;
+							}else{
+								window.location = '../login.do';
+							}
+						}
+					});
+				},
+				success : function(data) {
+					$("#content").empty();
+					$("#content").append(data);
+				}
 			});
 		};
 		// 页面索引
@@ -77,7 +93,7 @@
 			goodsCategory : '../html/goodsCategory/goodsCategory.html',
 			payOnline : '../html/payOnline/payOnline.html',
 			sellDetail : '../html/selldetail/sellDetail.html',
-			paymonth4loginer:'../html/PayMonth4Loginer/paymonth4loginer.html'
+			paymonth4loginer : '../html/PayMonth4Loginer/paymonth4loginer.html'
 		};
 
 		// 默认首先加载信息看板页面
