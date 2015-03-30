@@ -69,6 +69,10 @@ loginer.loadZtree = function() {
 		dataType : 'json',
 		success : function(data) {
 			loginer.zTreeObj = $.fn.zTree.init($("#distributorTree"), setting, data);
+			$('.scrollable').slimScroll({
+				height : '604px',
+				width : 'auto'
+			});
 		}
 	});
 };

@@ -38,19 +38,7 @@ public class DistributorController {
 	 */
 	@RequestMapping(value = "/getTree", method = RequestMethod.GET)
 	public Object getAllDistributor() {
-
-		List<Distributor> list = distributorService.getAll(null);
-
-		Distributor distributor = new Distributor();
-		distributor.setId("0");
-		distributor.setName("西北总代理");
-		distributor.setpId("-1");
-		distributor.setHasChild(1);
-		distributor.setOpen(true);
-
-		list.add(distributor);
-
-		return list;
+		return distributorService.getAll(null);
 	}
 
 	/**
@@ -65,7 +53,6 @@ public class DistributorController {
 		return distributorService.getAll(null);
 	}
 
-	
 	/**
 	 * 获取所有的分销商
 	 * 
@@ -77,7 +64,7 @@ public class DistributorController {
 	public Object getDistributor(@PathVariable String parentId) {
 		return distributorService.getByParentId(parentId);
 	}
-	
+
 	/**
 	 * 增加一个实体
 	 * 

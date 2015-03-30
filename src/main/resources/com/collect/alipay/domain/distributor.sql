@@ -8,3 +8,5 @@ create table if not exists t_distributor(
 	d_parent_id varchar(40),
 	d_haschild int
 );
+
+insert into t_distributor (d_id, d_name, d_haschild) values ('0', '总代理', 1);

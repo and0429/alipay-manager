@@ -65,16 +65,6 @@ public class LoginerServiceImpl extends BaseServiceImpl<Loginer> implements Logi
 	public List<Object> getZtreeData() {
 
 		List<Distributor> list = disService.getAll(null);
-
-		Distributor distributor = new Distributor();
-		distributor.setId("0");
-		distributor.setName("西北总代理");
-		distributor.setpId("-1");
-		distributor.setHasChild(1);
-		distributor.setOpen(true);
-
-		list.add(distributor);
-
 		List<Cust> custs = custService.getAll(null);
 
 		List<Object> result = new ArrayList<Object>();
@@ -98,24 +88,25 @@ public class LoginerServiceImpl extends BaseServiceImpl<Loginer> implements Logi
 
 		List<Loginer> loginers = dataTables.getData();
 
-		for (Loginer loginer2 : loginers) {
+		if (!loginers.isEmpty()) {
+			for (Loginer loginer2 : loginers) {
 
-			switch (loginer2.getRole()) {
-			case 2:
-				Distributor dis = disService.getById(loginer2.getCustOrDistributorId());
-				if (dis != null) {
-					loginer2.setCustOrDistributorName(dis.getName());
+				switch (loginer2.getRole()) {
+				case 2:
+					Distributor dis = disService.getById(loginer2.getCustOrDistributorId());
+					if (dis != null) {
+						loginer2.setCustOrDistributorName(dis.getName());
+					}
+					break;
+				case 3:
+					Cust cust = custService.getById(loginer2.getCustOrDistributorId());
+					if (cust != null) {
+						loginer2.setCustOrDistributorName(cust.getName());
+					}
+					break;
 				}
-				break;
-			case 3:
-				Cust cust = custService.getById(loginer2.getCustOrDistributorId());
-				if (cust != null) {
-					loginer2.setCustOrDistributorName(cust.getName());
-				}
-				break;
 			}
 		}
-
 		return dataTables;
 	}
 

@@ -6,3 +6,6 @@ create table if not exists t_loginer(
 	l_role int,
 	l_custOrDistributorId varchar(40)
 );
+
+insert into t_loginer(l_id, l_username, l_password, l_role, l_custOrDistributorId) 
+values ('0', 'admin', '96e79218965eb72c92a549dd5a330112', 1, '0');

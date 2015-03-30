@@ -69,6 +69,10 @@ cust.loadZtree = function() {
 		dataType : 'json',
 		success : function(data) {
 			cust.zTreeObj = $.fn.zTree.init($("#distributorTree"), setting, data);
+			$('.scrollable').slimScroll({
+				height : '400px',
+				width : 'auto'
+			});
 			cust.addInfo(data[1]);
 		}
 	});
