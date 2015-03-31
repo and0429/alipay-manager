@@ -71,9 +71,9 @@
 						dataType : "json",
 						async : false,
 						success : function(data) {
-							if (data !== null) {	
+							if (data !== null) {
 								return true;
-							}else{
+							} else {
 								window.location = '../login.do';
 							}
 						}
@@ -93,7 +93,9 @@
 			goodsCategory : '../html/goodsCategory/goodsCategory.html',
 			payOnline : '../html/payOnline/payOnline.html',
 			sellDetail : '../html/selldetail/sellDetail.html',
-			paymonth4loginer : '../html/PayMonth4Loginer/paymonth4loginer.html'
+			paymonth4loginer : '../html/PayMonth4Loginer/paymonth4loginer.html',
+			paymonth4distributor : '../html/paymonth4distributor/paymonth4distributor.html',
+			sellDetail4shangtong : '../html/sellDetail4shangtong/sellDetail4shangtong.html'
 		};
 
 		// 默认首先加载信息看板页面
