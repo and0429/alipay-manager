@@ -14,10 +14,11 @@ import com.collect.alipay.domain.Distributor;
 public class DistributorUtils {
 
 	/**
-	 * 指定一个集合。返回一个有树状结构的所有部门的集合
+	 * 从集合中找到指定id的分销商的所有最后一层子分销商的Id的集合
 	 * 
-	 * @param topList
-	 * @return 新集合
+	 * @param all
+	 *            所有的分销商
+	 * @return 最后一级子分销商的Id集合
 	 */
 	public static List<String> getAllNoChildDistributorById(List<Distributor> all, String id) {
 		List<String> list = new ArrayList<String>();

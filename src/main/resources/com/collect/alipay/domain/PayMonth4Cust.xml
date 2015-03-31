@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.collect.alipay.domain.PayMonth4Cust">
+	
+	<resultMap type="PayMonth4Cust" id="payMonth4Cust">
+		<id column="" property="id"/>
+		<result column="" property="month"/>
+		<result column="" property="total"/>
+		<association property="cust" javaType="Cust">
+			<id column="" property="id"/>
+			<result column="" property="name"/>
+		</association>
+	</resultMap>
+
+</mapper>
