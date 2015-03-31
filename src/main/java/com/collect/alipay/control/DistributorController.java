@@ -119,11 +119,7 @@ public class DistributorController {
 	@RequestMapping(value = "/get/{id}", method = RequestMethod.GET)
 	public Object getById(@PathVariable String id) {
 
-		Distributor d = distributorService.getById(id);
-
-		System.out.println(d);
-
-		return d;
+		return distributorService.getById(id);
 	}
 
 	/**

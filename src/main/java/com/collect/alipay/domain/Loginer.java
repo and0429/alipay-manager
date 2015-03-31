@@ -1,5 +1,6 @@
 package com.collect.alipay.domain;
 
+import org.codehaus.jackson.map.annotate.JsonView;
 import org.hibernate.validator.constraints.NotEmpty;
 
 /****
@@ -14,6 +15,12 @@ public class Loginer extends BaseModel {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+
+	public interface WithoutPasswordView {
+	};
+
+	public interface WithPasswordView extends WithoutPasswordView{
+	};
 
 	/**
 	 * 主键
@@ -71,6 +78,7 @@ public class Loginer extends BaseModel {
 		return loginMessage;
 	}
 
+	@JsonView(WithPasswordView.class)
 	public String getPassword() {
 		return password;
 	}

@@ -76,7 +76,8 @@
 			loginer : '../html/loginer/loginer.html',
 			goodsCategory : '../html/goodsCategory/goodsCategory.html',
 			payOnline : '../html/payOnline/payOnline.html',
-			sellDetail : '../html/selldetail/sellDetail.html'
+			sellDetail : '../html/selldetail/sellDetail.html',
+			paymonth4loginer:'../html/PayMonth4Loginer/paymonth4loginer.html'
 		};
 
 		// 默认首先加载信息看板页面

@@ -49,4 +49,12 @@ public interface LoginerService extends BaseService<Loginer> {
 	 */
 	Object getLoginers(Loginer loginer);
 
+	/**
+	 * 根据商户Id获取获取登陆者列表
+	 * 
+	 * @param custId 商户或者分销商Id
+	 * @return 登录者集合
+	 */
+	List<Loginer> getByCustId(String custId);
+
 }

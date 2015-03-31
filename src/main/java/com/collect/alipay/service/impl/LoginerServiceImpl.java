@@ -41,7 +41,7 @@ public class LoginerServiceImpl extends BaseServiceImpl<Loginer> implements Logi
 
 		loginer.setPassword(DigestUtils.md5Hex(loginer.getPassword()));
 
-		 return sqlSession.selectOne(clazz.getName() + ".check", loginer);
+		return sqlSession.selectOne(clazz.getName() + ".check", loginer);
 
 	}
 
@@ -117,6 +117,17 @@ public class LoginerServiceImpl extends BaseServiceImpl<Loginer> implements Logi
 		}
 
 		return dataTables;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.collect.alipay.service.LoginerService#getByCustId(java.lang.String)
+	 */
+	@Override
+	public List<Loginer> getByCustId(String custId) {
+		return sqlSession.selectList(clazz.getName() + ".getByCustId", custId);
 	}
 
 }

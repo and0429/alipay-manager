@@ -9,5 +9,5 @@ import com.collect.alipay.domain.Pay;
  *
  */
 public interface PayService extends BaseService<Pay> {
-
+	
 }

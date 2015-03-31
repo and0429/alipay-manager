@@ -72,6 +72,12 @@
 		select * from t_loginer where l_username = #{username}
 	</select>
 
+	<!-- get set by custId -->
+	<select id="getByCustId" resultMap="loginer">
+		select * from t_loginer where l_custOrDistributorId = #{custId}
+	</select>
+
+
 	<resultMap type="Loginer" id="loginer">
 		<id column="l_id" property="id" />
 		<result column="l_username" property="username" />

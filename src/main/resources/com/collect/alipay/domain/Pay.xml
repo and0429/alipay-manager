@@ -43,6 +43,8 @@
 		</where>
 	</select>
 
+	
+	
 
 	<resultMap type="Pay" id="pay">
 		<id column="p_id" property="id" />
