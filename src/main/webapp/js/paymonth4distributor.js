@@ -36,48 +36,56 @@ Paymonth4distributor.prototype.loadDataTable = function() {
 			'type' : 'POST',
 			'data' : function(d) {
 				return $.extend(d, {
-					'name' : $.trim($('#search').val()),
-					'distributorId' : cust.distributorId
+					'custName' : $.trim($('#search').val()) == '' ? undefined : $.trim($('#search').val()),
+					'month' : $('#month').val() == '' ? undefined : $('#month').val()
 				});
 			}
 		},
 		"columns" : [ {
-			"data" : "distributor.name"
+			"data" : "month"
 		}, {
-			"data" : "name"
+			"data" : "cust.name"
 		}, {
-			"data" : "addr"
-		}, {
-			"data" : "manager"
-		}, {
-			"data" : "tel"
-		}, {
-			"data" : "id"
+			"data" : "total"
 		} ],
 
 		"columnDefs" : [ {
-			"targets" : 5,
+			"targets" : 2,
 			"render" : function(data, type, full, meta) {
-				var operationHtml = "<div id='operation' style='display: none;'>"
-				operationHtml += '<div class="icon-edit icon-blue-color updateBtn  margin-smallR3" title="修改" style="cursor:pointer" custId=' + data + '></div>';
-				operationHtml += '<div class="icon-trash icon-blue-color deleteBtn" title="删除" style="cursor:pointer" custId=' + data + '></div>';
-				operationHtml += '</div>'
-				return operationHtml;
+				return data.toFixed(2);
 			}
 		} ],
 
 		'drawCallback' : function(settings) {
-//			cust.showOrhideOperation();
-//			cust.clickDelete();
-//			cust.clickEdit();
+
 		},
 		'initComplete' : function() {
-//			cust.addButton();
-//			cust.searchEvnet();
-//			cust.clickAddBtn();
+			p4d.addToolbar();
+			p4d.clickSearch();
 		}
 	});
 };
+
+/**
+ * add toolbar tools
+ */
+Paymonth4distributor.prototype.addToolbar = function() {
+	var html = '';
+	html += "<input type='search' id='search' placeholder='请输入名称查询'/>";
+	html += "<input type='month' id='month'style='margin-left: 10px;' />";
+	html += "<button class='btn btn-primary' id='searchbtu' style='margin-bottom: 10px; margin-left: 10px;'>查询</button>"
+	$('.toolbar').html(html);
+
+}
+
+/**
+ * search event;
+ */
+Paymonth4distributor.prototype.clickSearch = function() {
+	$('#searchbtu').on('click', function() {
+		p4d.dataTable.draw();
+	});
+}
 
 /**
  * 

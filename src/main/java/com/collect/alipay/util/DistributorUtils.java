@@ -56,4 +56,91 @@ public class DistributorUtils {
 		}
 	}
 
+	/**
+	 * 返回一个指定Id的分销商的所有的子集合
+	 * 
+	 * @param all
+	 *            所有的分销商
+	 * @param pId
+	 *            指定的父级分销商
+	 * @return 所有的子分销商和自己
+	 */
+	public static List<Distributor> getSelfAndChild(List<Distributor> all, String pId) {
+
+		List<Distributor> list = new ArrayList<Distributor>();
+		getSelfAndChild(all, list, pId);
+
+		return list;
+	}
+
+	/**
+	 * 返回一个指定Id的分销商的所有的子集合
+	 * 
+	 * @param all
+	 * @param list
+	 * @param pId
+	 */
+	private static void getSelfAndChild(List<Distributor> all, List<Distributor> list, String pId) {
+		for (int i = 0; i < all.size(); i++) {
+			Distributor distributor = all.get(i);
+			if (distributor.getId().equals(pId)) {
+				list.add(distributor);
+			} else {
+				if (pId.equals(distributor.getpId())) {
+					getSelfAndChild(all, list, distributor.getId());
+				}
+			}
+		}
+	}
+
+	/**
+	 * 返回一个树状名字的分销商集合
+	 * 
+	 * @param all
+	 *            所有的集合
+	 * @return
+	 */
+	public static List<Distributor> getDistributor4TreeViewer(List<Distributor> all) {
+		List<Distributor> list = new ArrayList<Distributor>();
+		getDistributor4TreeViewer(all, list);
+		return list;
+	}
+
+	/**
+	 * 返回一个树状名字的分销商集合
+	 * 
+	 * @param all
+	 * @param list
+	 */
+	private static void getDistributor4TreeViewer(List<Distributor> all, List<Distributor> list) {
+		
+		for (int i = 0; i < all.size(); i++) {
+			Distributor dis = all.get(i);
+			if (dis.getpId() == null) {
+				list.add(dis);
+			}else{
+				for (int j = 0; j < all.size(); j++) {
+					Distributor dis2 = all.get(j);
+					if (dis.getpId().equals(dis2.getId())) {
+						
+					}
+					
+					
+					
+				}
+			}
+			
+		}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+
+	}
+
 }

@@ -54,7 +54,4 @@
 		</tx:attributes>
 	</tx:advice>
 
-
-	<import resource="spring-quartz.xml" />
-
 </beans>
