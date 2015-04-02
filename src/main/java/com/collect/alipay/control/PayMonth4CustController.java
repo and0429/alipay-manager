@@ -30,6 +30,7 @@ public class PayMonth4CustController {
 	@RequestMapping(value = "/paymonth4custs", method = RequestMethod.POST)
 	public Object paymonth4custs(PayMonth4Cust payMonth4Cust, String custName, ModelMap modelMap) {
 		Cust c = new Cust();
+		c.setName(custName);
 		payMonth4Cust.setCust(c);
 
 		Loginer loginer = (Loginer) modelMap.get("loginer");

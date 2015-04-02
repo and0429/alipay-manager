@@ -62,6 +62,7 @@ Paymonth4distributor.prototype.loadDataTable = function() {
 		'initComplete' : function() {
 			p4d.addToolbar();
 			p4d.clickSearch();
+			p4d.zTree();
 		}
 	});
 };
@@ -71,11 +72,12 @@ Paymonth4distributor.prototype.loadDataTable = function() {
  */
 Paymonth4distributor.prototype.addToolbar = function() {
 	var html = '';
-	html += "<input type='search' id='search' placeholder='请输入名称查询'/>";
-	html += "<input type='month' id='month'style='margin-left: 10px;' />";
+	html += "<input type='search' style='width:100px' id='distributor' placeholder='请选择分销商'/>";
+	html += "<input type='search' style='margin-left: 10px; width: 140px' id='search' placeholder='请输入商户名称查询'/>";
+	html += "<input type='month' id='month'style='margin-left: 10px;  width: 130px' />";
 	html += "<button class='btn btn-primary' id='searchbtu' style='margin-bottom: 10px; margin-left: 10px;'>查询</button>"
+	html += "<div><ul id='ztree' class='ztree'></ul></div>";
 	$('.toolbar').html(html);
-
 }
 
 /**
@@ -85,6 +87,41 @@ Paymonth4distributor.prototype.clickSearch = function() {
 	$('#searchbtu').on('click', function() {
 		p4d.dataTable.draw();
 	});
+}
+
+/**
+ * load zTree
+ */
+Paymonth4distributor.prototype.zTree = function() {
+
+	var setting = {
+		view : {
+			dblClickExpand : false,
+			selectedMulti : false,
+			showLine : false,
+			showIcon : false
+		},
+		data : {
+			simpleData : {
+				enable : true
+			}
+		},
+		callback : {
+		// beforeClick : beforeClick,
+		// onClick : onClick
+		}
+	};
+
+	$.ajax({
+		url : '../distributor/getZtree4Loginer.do',
+		success : function(data) {
+			if (data) {
+				$.fn.zTree.init($("#ztree"), setting, data);
+			}
+		}
+
+	});
+
 }
 
 /**

@@ -1,19 +1,24 @@
 package com.collect.alipay.control;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
 
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.collect.alipay.control.dto.Status;
 import com.collect.alipay.domain.Cust;
 import com.collect.alipay.domain.Distributor;
+import com.collect.alipay.domain.Loginer;
 import com.collect.alipay.service.CustService;
 import com.collect.alipay.service.DistributorService;
+import com.collect.alipay.util.DistributorUtils;
 
 /**
  * 分销商管理控制器
@@ -22,6 +27,7 @@ import com.collect.alipay.service.DistributorService;
  *
  */
 @RestController
+@SessionAttributes(value = "loginer")
 @RequestMapping("/distributor")
 public class DistributorController {
 
@@ -39,6 +45,33 @@ public class DistributorController {
 	@RequestMapping(value = "/getTree", method = RequestMethod.GET)
 	public Object getAllDistributor() {
 		return distributorService.getAll(null);
+	}
+
+	/**
+	 * 获取登陆者的子树
+	 * 
+	 * @return 登录人员的子集
+	 */
+	@RequestMapping(value = "getZtree4Loginer", method = RequestMethod.GET)
+	public Object getZtree4Longienr(ModelMap map) {
+
+		List<Distributor> distributors = new ArrayList<Distributor>();
+
+		Loginer loginer = (Loginer) map.get("loginer");
+
+		if (loginer == null) {
+			return distributors;
+		}
+
+		if (loginer.getRole() == 3) {
+			return distributors;
+		}
+
+		String distributorId = loginer.getCustOrDistributorId();
+		List<Distributor> allDistributors = distributorService.getAll(null);
+
+		return DistributorUtils.getSelfAndChild(allDistributors, distributorId);
+
 	}
 
 	/**

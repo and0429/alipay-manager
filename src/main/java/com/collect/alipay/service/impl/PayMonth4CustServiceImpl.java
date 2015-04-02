@@ -26,7 +26,7 @@ import com.collect.alipay.util.DistributorUtils;
 public class PayMonth4CustServiceImpl extends BaseServiceImpl<PayMonth4Cust> implements PayMonth4CustService {
 
 	@Inject
-	private DistributorService DistributorService;
+	private DistributorService distributorService;
 
 	/*
 	 * (non-Javadoc)
@@ -51,7 +51,7 @@ public class PayMonth4CustServiceImpl extends BaseServiceImpl<PayMonth4Cust> imp
 
 		String distributorId = loginer.getCustOrDistributorId();
 
-		List<Distributor> allDistributors = DistributorService.getAll(null);
+		List<Distributor> allDistributors = distributorService.getAll(null);
 		List<String> distributorIds = DistributorUtils.getAllNoChildDistributorById(allDistributors, distributorId);
 
 		Map<String, Object> params = new HashMap<String, Object>();
