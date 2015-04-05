@@ -13,11 +13,14 @@ import com.collect.alipay.domain.PayMonth4Cust;
 public interface PayMonth4CustService extends BaseService<PayMonth4Cust> {
 
 	/**
-	 * 
+	 * 获取登录用户的月支付总汇
+	 *
 	 * @param payMonth4Cust
+	 *            封装参数
 	 * @param loginer
-	 * @return
+	 *            登录者
+	 * @return 集合
 	 */
-	DataTableDto<PayMonth4Cust> getPager(PayMonth4Cust payMonth4Cust, Loginer loginer);
+	DataTableDto<PayMonth4Cust> getPager(PayMonth4Cust payMonth4Cust, Loginer loginer, String distributorId);
 
 }

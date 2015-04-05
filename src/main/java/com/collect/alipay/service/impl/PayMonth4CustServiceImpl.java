@@ -36,7 +36,7 @@ public class PayMonth4CustServiceImpl extends BaseServiceImpl<PayMonth4Cust> imp
 	 * alipay.domain.PayMonth4Cust, com.collect.alipay.domain.Loginer)
 	 */
 	@Override
-	public DataTableDto<PayMonth4Cust> getPager(PayMonth4Cust payMonth4Cust, Loginer loginer) {
+	public DataTableDto<PayMonth4Cust> getPager(PayMonth4Cust payMonth4Cust, Loginer loginer, String distributorId) {
 
 		List<PayMonth4Cust> data = new ArrayList<PayMonth4Cust>();
 		DataTableDto<PayMonth4Cust> dto = new DataTableDto<PayMonth4Cust>(payMonth4Cust.getDraw(), 0, data);
@@ -49,7 +49,8 @@ public class PayMonth4CustServiceImpl extends BaseServiceImpl<PayMonth4Cust> imp
 			return dto;
 		}
 
-		String distributorId = loginer.getCustOrDistributorId();
+		if (distributorId == null)
+			distributorId = loginer.getCustOrDistributorId();
 
 		List<Distributor> allDistributors = distributorService.getAll(null);
 		List<String> distributorIds = DistributorUtils.getAllNoChildDistributorById(allDistributors, distributorId);

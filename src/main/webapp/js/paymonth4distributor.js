@@ -36,6 +36,7 @@ Paymonth4distributor.prototype.loadDataTable = function() {
 			'type' : 'POST',
 			'data' : function(d) {
 				return $.extend(d, {
+					'distributorId' : $('#distributorSelectedId').val() == '' ? undefined : $('#distributorSelectedId').val(),
 					'custName' : $.trim($('#search').val()) == '' ? undefined : $.trim($('#search').val()),
 					'month' : $('#month').val() == '' ? undefined : $('#month').val()
 				});
@@ -72,11 +73,12 @@ Paymonth4distributor.prototype.loadDataTable = function() {
  */
 Paymonth4distributor.prototype.addToolbar = function() {
 	var html = '';
-	html += "<input type='search' style='width:100px' id='distributor' placeholder='请选择分销商'/>";
+	html += "<input type='search' id='distributorSelect' readonly placeholder='请选择分销商'/>";
 	html += "<input type='search' style='margin-left: 10px; width: 140px' id='search' placeholder='请输入商户名称查询'/>";
 	html += "<input type='month' id='month'style='margin-left: 10px;  width: 130px' />";
 	html += "<button class='btn btn-primary' id='searchbtu' style='margin-bottom: 10px; margin-left: 10px;'>查询</button>"
 	html += "<div><ul id='ztree' class='ztree'></ul></div>";
+	html += "<input type='hidden' id='distributorSelectedId' />";
 	$('.toolbar').html(html);
 }
 
@@ -107,20 +109,46 @@ Paymonth4distributor.prototype.zTree = function() {
 			}
 		},
 		callback : {
-		// beforeClick : beforeClick,
-		// onClick : onClick
+			onClick : p4d.clickDistributorNode
 		}
 	};
 
 	$.ajax({
 		url : '../distributor/getZtree4Loginer.do',
+		async : false,
 		success : function(data) {
 			if (data) {
 				$.fn.zTree.init($("#ztree"), setting, data);
+				p4d.clickSelectDistributor();
 			}
 		}
-
 	});
+}
+
+/**
+ * click select distributor
+ */
+Paymonth4distributor.prototype.clickSelectDistributor = function() {
+	$('#distributorSelect').on('focus', function() {
+		$('#ztree').show();
+	})
+};
+
+/**
+ * select distributor
+ */
+Paymonth4distributor.prototype.clickDistributorNode = function(e, treeId, treeNode) {
+	var zTree = $.fn.zTree.getZTreeObj("ztree");
+	var node = zTree.getSelectedNodes();
+	$('#distributorSelect').val(node[0].name);
+	$('#distributorSelectedId').val(node[0].id);
+	$('#ztree').hide();
+
+	console.log(node.name);
+	console.log(node.id);
+	
+	console.log($('#distributorSelect').val());
+	console.log($('#distributorSelectedId').val());
 
 }
 
