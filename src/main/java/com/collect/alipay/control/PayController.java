@@ -26,6 +26,15 @@ public class PayController {
 	@Inject
 	private PayService payService;
 
+	/**
+	 * 登录用户的支付详情
+	 * 
+	 * @param pay
+	 *            封装参数
+	 * @param modelMap
+	 *            map
+	 * @return 详情的集合
+	 */
 	@RequestMapping(value = "/sellDetail", method = RequestMethod.POST)
 	public Object sellDetail(Pay pay, ModelMap modelMap) {
 		Loginer loginer = (Loginer) modelMap.get("loginer");

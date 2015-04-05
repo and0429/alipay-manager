@@ -11,6 +11,7 @@
 		left join t_cust
 		on pc_custid = c_id
 		<include refid="whereCondition" />
+		limit #{payMonth4Cust.start}, #{payMonth4Cust.length}
 	</select>
 
 	<!-- get count -->

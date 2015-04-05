@@ -2,6 +2,39 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<style type="text/css">
+.ztree {
+	display: none;
+	margin: 0;
+	padding-left: 5px;
+	top: 43px;
+	color: #333;
+	border: 1px solid #d0d0d0;
+	width: 220px;
+	position: absolute;
+	z-index: 999;
+	background-color: white;
+	margin: 0;
+}
+
+.ztree li {
+	color: #000;
+	font-size: 14px;
+}
+
+.ztree li span {
+	color: #000;
+	font-size: 14px;
+}
+
+.ztree li span.button {
+	display: none;
+}
+
+.ztree li a.curSelectedNode {
+	background-color: #fff;
+}
+</style>
 <script type="text/javascript" src="../js/sellDetail4shangtong.js"></script>
 </head>
 <body>
@@ -34,13 +67,14 @@
 						<div class='box-content box-no-padding'>
 							<div class='responsive-table'>
 								<div class='scrollable-area'>
-									<table class='table show-data-table table-hover' style='margin-bottom: 0;' id="payMonthTable">
+									<table class='table show-data-table table-hover' style='margin-bottom: 0;'>
 										<thead>
 											<tr>
 												<th>商品类型</th>
 												<th>支付金额</th>
 												<th>支付日期</th>
 												<th>支付方式</th>
+												<th>商户</th>
 												<th>操作员</th>
 											</tr>
 										</thead>

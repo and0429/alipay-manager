@@ -143,13 +143,6 @@ Paymonth4distributor.prototype.clickDistributorNode = function(e, treeId, treeNo
 	$('#distributorSelect').val(node[0].name);
 	$('#distributorSelectedId').val(node[0].id);
 	$('#ztree').hide();
-
-	console.log(node.name);
-	console.log(node.id);
-	
-	console.log($('#distributorSelect').val());
-	console.log($('#distributorSelectedId').val());
-
 }
 
 /**
