@@ -849,6 +849,11 @@ a:hover, a:focus {
 	font-size: 14px;
 }
 
+.dataTables_wrapper .dataTables_scroll {
+	min-height: 518px;
+	clear: both;
+}
+
 .innerFlow {
 	border-bottom: solid 2px #ddd;
 	display: block;
@@ -1428,7 +1433,7 @@ table tr td {
 }
 
 * /
-	/* .table-lang tr th{width:9% !important;border:solid 1px red;}*/     
+	/* .table-lang tr th{width:9% !important;border:solid 1px red;}*/      
 	      
 .table-lang {
 	width: 100% !important;

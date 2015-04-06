@@ -22,6 +22,28 @@ util.dataTableLanguage = function() {
 };
 
 /**
+ * 获取在线用户的用户名
+ */
+util.getRole = function() {
+
+	var role;
+
+	$.ajax({
+		type : "GET",
+		url : "../getloginer.do",
+		async : false,
+		dataType : "json",
+		success : function(data) {
+			if (data !== null) {
+				role = data.role;
+			}
+		}
+	});
+
+	return role;
+};
+
+/**
  * 获取所有的分销商并且生成select元素
  * 
  * @param id

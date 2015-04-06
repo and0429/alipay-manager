@@ -15,6 +15,7 @@ import com.collect.alipay.domain.Loginer;
 import com.collect.alipay.service.CustService;
 import com.collect.alipay.service.DistributorService;
 import com.collect.alipay.service.LoginerService;
+import com.collect.alipay.util.DistributorUtils;
 
 /**
  * @author zhangkai
@@ -62,12 +63,24 @@ public class LoginerServiceImpl extends BaseServiceImpl<Loginer> implements Logi
 	 * @see com.collect.alipay.service.LoginerService#getZtreeData()
 	 */
 	@Override
-	public List<Object> getZtreeData() {
-
-		List<Distributor> list = disService.getAll(null);
-		List<Cust> custs = custService.getAll(null);
+	public List<Object> getZtreeData(Loginer loginer) {
 
 		List<Object> result = new ArrayList<Object>();
+
+		if (loginer.getRole() == 3) {
+			Cust cust = custService.getById(loginer.getCustOrDistributorId());
+			result.add(cust);
+			return result;
+		}
+
+		List<Distributor> all = disService.getAll(null);
+
+		List<Distributor> list = DistributorUtils.getSelfAndChild(all, loginer.getCustOrDistributorId());
+
+		List<String> distributorIds = DistributorUtils.getAllNoChildDistributorById(list, loginer.getCustOrDistributorId());
+
+		List<Cust> custs = custService.getByDistributorIds(distributorIds);
+
 		result.addAll(list);
 		result.addAll(custs);
 
@@ -82,7 +95,7 @@ public class LoginerServiceImpl extends BaseServiceImpl<Loginer> implements Logi
 	 * .domain.Loginer)
 	 */
 	@Override
-	public Object getLoginers(Loginer loginer) {
+	public DataTableDto<Loginer> getLoginers(Loginer loginer) {
 
 		DataTableDto<Loginer> dataTables = this.getPager(loginer);
 

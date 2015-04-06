@@ -3,7 +3,7 @@ var cust = new Object();
 cust.dataTable = undefined;
 cust.addOrEditFlag = undefined;
 cust.zTreeObj = undefined;
-cust.distributorId = '0'// undefined;
+cust.distributorId = undefined;
 
 /**
  * main method
@@ -23,6 +23,8 @@ cust.loaddataTable = function() {
 		"serverSide" : true,
 		"ordering" : false,
 		"searching" : false,
+		"scrollY" : "500px",
+		"scrollCollapse" : true,
 		"dom" : 'l<"toolbar">rtip',
 		"language" : util.dataTableLanguage(),
 		"ajax" : {
@@ -287,7 +289,7 @@ cust.loadZtree = function() {
 	 * get data;
 	 */
 	$.ajax({
-		url : '../distributor/getTree.do',
+		url : '../distributor/getZtree4Loginer.do',
 		dataType : 'json',
 		success : function(data) {
 			cust.zTreeObj = $.fn.zTree.init($("#distributorTree"), setting, data);

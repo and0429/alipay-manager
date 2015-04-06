@@ -5,6 +5,7 @@ package com.collect.alipay.service;
 
 import java.util.List;
 
+import com.collect.alipay.control.dto.DataTableDto;
 import com.collect.alipay.domain.Loginer;
 
 /**
@@ -38,7 +39,7 @@ public interface LoginerService extends BaseService<Loginer> {
 	 * 
 	 * @return
 	 */
-	List<Object> getZtreeData();
+	List<Object> getZtreeData(Loginer loginer);
 
 	/**
 	 * 根据条件获取登陆者列表
@@ -47,12 +48,13 @@ public interface LoginerService extends BaseService<Loginer> {
 	 *            封装条件
 	 * @return dataTables数据载体
 	 */
-	Object getLoginers(Loginer loginer);
+	DataTableDto<Loginer> getLoginers(Loginer loginer);
 
 	/**
 	 * 根据商户Id获取获取登陆者列表
 	 * 
-	 * @param custId 商户或者分销商Id
+	 * @param custId
+	 *            商户或者分销商Id
 	 * @return 登录者集合
 	 */
 	List<Loginer> getByCustId(String custId);

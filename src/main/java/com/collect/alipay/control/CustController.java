@@ -2,14 +2,17 @@ package com.collect.alipay.control;
 
 import javax.inject.Inject;
 
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.collect.alipay.control.dto.Status;
 import com.collect.alipay.domain.Cust;
 import com.collect.alipay.domain.Distributor;
+import com.collect.alipay.domain.Loginer;
 import com.collect.alipay.service.CustService;
 import com.collect.alipay.util.UUIDUtil;
 
@@ -21,6 +24,7 @@ import com.collect.alipay.util.UUIDUtil;
  */
 @RestController
 @RequestMapping(value = "/cust")
+@SessionAttributes(value = "loginer")
 public class CustController {
 
 	@Inject
@@ -67,7 +71,14 @@ public class CustController {
 	 * @return 组装好的表格数据
 	 */
 	@RequestMapping(value = "/custs", method = RequestMethod.POST)
-	public Object users(Cust cust, String distributorId) {
+	public Object users(Cust cust, String distributorId, ModelMap modelMap) {
+
+		Loginer loginer = (Loginer) modelMap.get("loginer");
+
+		if (distributorId == null) {
+			distributorId = loginer.getCustOrDistributorId();
+		}
+
 		return custService.getPagerWithMapCodition(cust, distributorId);
 	}
 
@@ -104,7 +115,8 @@ public class CustController {
 	/**
 	 * 记载select
 	 * 
-	 * @param distributorId 分销商id
+	 * @param distributorId
+	 *            分销商id
 	 * @return
 	 */
 	@RequestMapping(value = "/getSelect/{distributorId}")

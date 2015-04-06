@@ -36,9 +36,6 @@ public class CustServiceImpl extends BaseServiceImpl<Cust> implements CustServic
 	@Override
 	public DataTableDto<Cust> getPagerWithMapCodition(Cust cust, String distributorId) {
 
-		// if (cust.getName() != null) {
-		// cust.setName(cust.getName().trim());
-		// }
 		List<Distributor> all = distributorService.getAll(null);
 
 		List<String> distributorIds = DistributorUtils.getAllNoChildDistributorById(all, distributorId);
@@ -63,6 +60,17 @@ public class CustServiceImpl extends BaseServiceImpl<Cust> implements CustServic
 	@Override
 	public List<Cust> getByDistributorId(String distributorId) {
 		return sqlSession.selectList(clazz.getName() + ".getByDistributorId", distributorId);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.collect.alipay.service.CustService#getByDistributors(java.util.List)
+	 */
+	@Override
+	public List<Cust> getByDistributorIds(List<String> distributorIds) {
+		return sqlSession.selectList(clazz.getName() + ".getByDistributorIds", distributorIds);
 	}
 
 }

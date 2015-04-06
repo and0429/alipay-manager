@@ -1,5 +1,7 @@
 package com.collect.alipay.control;
 
+import java.util.Collections;
+
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
@@ -109,8 +111,14 @@ public class LoginController {
 	 */
 	@RequestMapping(value = "/login/getZtree", method = RequestMethod.GET)
 	@ResponseBody
-	public Object getZtreeData() {
-		return loginerService.getZtreeData();
+	public Object getZtreeData(HttpSession session) {
+		Loginer loginer = (Loginer) session.getAttribute("loginer");
+
+		if (loginer == null) {
+			return Collections.EMPTY_LIST;
+		}
+
+		return loginerService.getZtreeData(loginer);
 	}
 
 	/**
@@ -122,7 +130,17 @@ public class LoginController {
 	 */
 	@RequestMapping(value = "/login/loginers", method = RequestMethod.POST)
 	@ResponseBody
-	public Object getLoginers(Loginer loginer) {
+	public Object getLoginers(Loginer loginer, HttpSession session) {
+
+		Loginer loginerFromSession = (Loginer) session.getAttribute("loginer");
+		if (loginerFromSession == null) {
+			return Collections.EMPTY_LIST;
+		}
+
+		if (loginer.getCustOrDistributorId() == null) {
+			loginer.setCustOrDistributorId(loginerFromSession.getCustOrDistributorId());
+		}
+
 		return loginerService.getLoginers(loginer);
 	}
 

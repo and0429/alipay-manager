@@ -87,6 +87,19 @@
 		select * from t_cust where c_distributor_id = #{distributorId}
 	</select>
 
+	<!-- get by list -->
+	<select id="getByDistributorIds" resultMap="cust">
+		select * from t_cust
+		<where>
+			<if test="!list.isEmpty()">
+				c_distributor_id in
+				<foreach collection="list" open="(" separator="," close=")" item="item">
+					#{item}
+				</foreach>
+			</if>
+		</where>
+	</select>
+
 	<resultMap type="Cust" id="cust">
 		<id column="c_id" property="id" />
 		<result column="c_name" property="name" />

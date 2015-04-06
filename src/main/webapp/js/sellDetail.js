@@ -22,6 +22,8 @@ SellDetail.prototype.loadDataTable = function() {
 	sellDetail.dataTable = $('#sellDetailTable').DataTable({
 		"processing" : true,
 		"serverSide" : true,
+		"scrollY" : "500px",
+		"scrollCollapse" : true,
 		"ordering" : false,
 		"searching" : false,
 		"dom" : 'l<"toolbar">rtip',

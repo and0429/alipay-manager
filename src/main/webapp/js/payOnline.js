@@ -37,6 +37,8 @@ payOnlie.loadDataTables = function() {
 	payOnlie.dataTable = $('.table').DataTable({
 		"ordering" : false,
 		"searching" : false,
+		"scrollY" : "500px",
+		"scrollCollapse" : true,
 		"paging" : false,
 		"dom" : '<"total"><"toolbar">t',
 		"language" : util.dataTableLanguage(),
@@ -88,9 +90,10 @@ payOnlie.save2Table = function() {
 				"amount" : $('#amount').val(),
 			}).draw();
 		} else {
-			$('#amount').val('');
 			$('#amount')[0].focus();
 		}
+		
+		$('#amount').val('');
 	});
 };
 

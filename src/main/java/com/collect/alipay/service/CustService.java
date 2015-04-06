@@ -32,4 +32,12 @@ public interface CustService extends BaseService<Cust> {
 	 */
 	List<Cust> getByDistributorId(String id);
 
+	/**
+	 * 根据分销商Id集合查找商户
+	 * 
+	 * @param distributorIds
+	 * @return
+	 */
+	List<Cust> getByDistributorIds(List<String> distributorIds);
+
 }

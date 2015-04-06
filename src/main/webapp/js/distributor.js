@@ -1,24 +1,24 @@
-var cust = new Object();
+var distributor = new Object();
 
-cust.zTreeObj = undefined;
+distributor.zTreeObj = undefined;
 
 /**
  * main
  */
-cust.main = function() {
-	cust.loadZtree();
-	cust.clickSavebtn();
+distributor.main = function() {
+	distributor.loadZtree();
+	distributor.clickSavebtn();
 }
 
 /**
  * load zTree
  */
-cust.loadZtree = function() {
+distributor.loadZtree = function() {
 
 	var setting = {
 		view : {
-			addHoverDom : cust.addHoverDom,
-			removeHoverDom : cust.removeHoverDom,
+			addHoverDom : distributor.addHoverDom,
+			removeHoverDom : distributor.removeHoverDom,
 			selectedMulti : false,
 			showTitle : false,
 			dblClickExpand : false
@@ -27,8 +27,8 @@ cust.loadZtree = function() {
 			enable : true,
 			removeTitle : "删除",
 			renameTitle : "修改",
-			showRemoveBtn : cust.showRemoveBtu,
-			showRenameBtn : cust.showRenameBtu,
+			showRemoveBtn : distributor.showRemoveBtu,
+			showRenameBtn : distributor.showRenameBtu,
 			drag : {
 				isCopy : false,
 				isMove : false
@@ -42,21 +42,21 @@ cust.loadZtree = function() {
 		callback : {
 			// before
 			beforeClick : function(treeId, treeNode) {
-				cust.zTreeObj.expandNode(treeNode, !treeNode.open, false, true);
+				distributor.zTreeObj.expandNode(treeNode, !treeNode.open, false, true);
 				return true;
 			},
 			beforeRemove : function(treeId, treeNode) {
-				cust.deleteNode(treeNode.id);
+				distributor.deleteNode(treeNode.id);
 				return false;
 			},
 			beforeEditName : function(treeId, treeNode, newName, isCancel) {
-				cust.updateNode(treeNode.id);
+				distributor.updateNode(treeNode.id);
 				return false;
 			},
 
 			// on
 			onClick : function(event, treeId, treeNode) {
-				cust.addInfo(treeNode);
+				distributor.addInfo(treeNode);
 			}
 		}
 	};
@@ -65,15 +65,15 @@ cust.loadZtree = function() {
 	 * get data;
 	 */
 	$.ajax({
-		url : '../distributor/getTree.do',
+		url : '../distributor/getZtree4Loginer.do',
 		dataType : 'json',
 		success : function(data) {
-			cust.zTreeObj = $.fn.zTree.init($("#distributorTree"), setting, data);
+			distributor.zTreeObj = $.fn.zTree.init($("#distributorTree"), setting, data);
 			$('.scrollable').slimScroll({
 				height : '400px',
 				width : 'auto'
 			});
-			cust.addInfo(data[1]);
+			distributor.addInfo(data[0]);
 		}
 	});
 }
@@ -81,7 +81,7 @@ cust.loadZtree = function() {
 /**
  * mouse moveover
  */
-cust.addHoverDom = function(treeId, treeNode) {
+distributor.addHoverDom = function(treeId, treeNode) {
 	var sObj = $("#" + treeNode.tId + "_span");
 	if (treeNode.editNameFlag || $("#addBtn_" + treeNode.tId).length > 0)
 		return;
@@ -109,7 +109,7 @@ cust.addHoverDom = function(treeId, treeNode) {
 /**
  * remove button
  */
-cust.showRemoveBtu = function(treeId, treeNode) {
+distributor.showRemoveBtu = function(treeId, treeNode) {
 
 	if (treeNode.id == '0') {
 		return false
@@ -123,7 +123,7 @@ cust.showRemoveBtu = function(treeId, treeNode) {
 /**
  * edit button
  */
-cust.showRenameBtu = function(treeId, treeNode) {
+distributor.showRenameBtu = function(treeId, treeNode) {
 	if (treeNode.id == '0') {
 		return false
 	}
@@ -134,24 +134,24 @@ cust.showRenameBtu = function(treeId, treeNode) {
 /**
  * mouse moveout
  */
-cust.removeHoverDom = function(treeId, treeNode) {
+distributor.removeHoverDom = function(treeId, treeNode) {
 	$("#addBtn_" + treeNode.tId).unbind().remove();
 };
 
 /**
  * click save button
  */
-cust.clickSavebtn = function() {
+distributor.clickSavebtn = function() {
 
 	$('#saveBtn').on('click', function() {
-		cust.subMitForm();
+		distributor.subMitForm();
 	})
 };
 
 /**
  * submit form
  */
-cust.subMitForm = function() {
+distributor.subMitForm = function() {
 	$('#distributorForm').ajaxSubmit({
 		'dataType' : 'json',
 		'resetForm' : true,
@@ -184,7 +184,7 @@ cust.subMitForm = function() {
 		'success' : function(data) {
 			if (data.code != 0) {
 				$('#myModal').modal('hide');
-				cust.loadZtree();
+				distributor.loadZtree();
 			}
 		},
 	});
@@ -193,7 +193,7 @@ cust.subMitForm = function() {
 /**
  * delete a distributor
  */
-cust.deleteNode = function(id) {
+distributor.deleteNode = function(id) {
 
 	if (window.confirm('您确定要删除此分销商吗？')) {
 
@@ -203,7 +203,7 @@ cust.deleteNode = function(id) {
 			'dataType' : 'json',
 			'success' : function(data) {
 				if (data.code !== 0) {
-					cust.loadZtree();
+					distributor.loadZtree();
 				} else {
 					alert(data.msg);
 				}
@@ -215,7 +215,7 @@ cust.deleteNode = function(id) {
 /**
  * show update tableb before update a distributor
  */
-cust.updateNode = function(id) {
+distributor.updateNode = function(id) {
 
 	$('#myModalLabel').html('修改分销商');
 	$('#distributorForm').attr('action', '../distributor/update.do');
@@ -251,18 +251,18 @@ cust.updateNode = function(id) {
 /**
  * load distributor info
  */
-cust.addInfo = function(treeNode) {
+distributor.addInfo = function(treeNode) {
 
 	if (treeNode) {
-		if (treeNode.pId === '0' || treeNode.pId === null) {
+		if (!treeNode.pPistributor) {
 			$('#distributorinfo').html('无');
 		} else {
 			$('#distributorinfo').html(treeNode.pPistributor.name);
-			$('#nameinfo').html(treeNode.name);
-			$('#managerinfo').html(treeNode.manager);
-			$('#telinfo').html(treeNode.tel);
-			$('#addrinfo').html(treeNode.addr);
 		}
+		$('#nameinfo').html(treeNode.name);
+		$('#managerinfo').html(treeNode.manager);
+		$('#telinfo').html(treeNode.tel);
+		$('#addrinfo').html(treeNode.addr);
 	}
 };
 
@@ -270,5 +270,5 @@ cust.addInfo = function(treeNode) {
  * load main method when thd doucment is already
  */
 $(document).ready(function() {
-	cust.main();
+	distributor.main();
 });

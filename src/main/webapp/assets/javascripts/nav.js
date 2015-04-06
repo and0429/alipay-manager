@@ -99,7 +99,7 @@
 		};
 
 		// 默认首先加载信息看板页面
-		pageControl.load("custManage");
+		pageControl.load("distributorManage");
 
 		return $(document).bind("nav-open", function(event, params) {
 			body.addClass("main-nav-opened").removeClass("main-nav-closed");

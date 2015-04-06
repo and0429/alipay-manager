@@ -34,6 +34,8 @@ goodsCategory.loadDateTables = function() {
 	goodsCategory.dataTable = $('#goodsCategoryTable').DataTable({
 		"processing" : true,
 		"serverSide" : true,
+		"scrollY" : "500px",
+		"scrollCollapse" : true,
 		"ordering" : false,
 		"searching" : false,
 		"dom" : 'l<"toolbar">rtip',

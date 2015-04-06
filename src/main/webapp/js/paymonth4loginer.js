@@ -22,6 +22,8 @@ PayMonth4Loginer.prototype.loadDataTable = function() {
 		"processing" : true,
 		"serverSide" : true,
 		"ordering" : false,
+		"scrollY" : "500px",
+		"scrollCollapse" : true,
 		"searching" : false,
 		"dom" : 'l<"toolbar">rtip',
 		"language" : util.dataTableLanguage(),

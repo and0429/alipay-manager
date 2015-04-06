@@ -7,11 +7,13 @@ loginer.DataTable = undefined;
 loginer.zTreeObj = undefined;
 loginer.custOrDistributorId = undefined;
 loginer.distributorHasChild = undefined;
+loginer.role = undefined;
 
 /**
  * main method
  */
 loginer.main = function() {
+	loginer.role = util.getRole();
 	loginer.loadZtree();
 	loginer.loadDataTable();
 	loginer.clickSavebtn();
@@ -45,11 +47,7 @@ loginer.loadZtree = function() {
 				return true;
 			},
 			onClick : function(event, treeId, treeNode) {
-				if (treeNode.id !== '0') {
-					loginer.custOrDistributorId = treeNode.id
-				} else {
-					loginer.custOrDistributorId = undefined;
-				}
+				loginer.custOrDistributorId = treeNode.id;
 				loginer.distributorHasChild = treeNode.hasChild
 				loginer.DataTable.draw();
 				if (treeNode.isParent) {
@@ -90,6 +88,8 @@ loginer.loadDataTable = function() {
 				"serverSide" : true,
 				"ordering" : false,
 				"searching" : false,
+				"scrollY" : "500px",
+				"scrollCollapse" : true,
 				"dom" : 'l<"toolbar">rtip',
 				"language" : util.dataTableLanguage(),
 				"ajax" : {
@@ -139,12 +139,14 @@ loginer.loadDataTable = function() {
 						{
 							"targets" : 3,
 							"render" : function(data, type, full, meta) {
+								console.log(loginer.role);
 								var operationHtml = "<div id='operation' style='display: none;'>";
 								operationHtml += '<div class="icon-edit icon-blue-color updateBtn  margin-smallR3" title="修改" style="cursor:pointer" username=' + full.username
 										+ ' loginId=' + data + '></div>';
-								operationHtml += '<div class="icon-trash icon-blue-color deleteBtn" title="删除" style="cursor:pointer" loginId=' + data + '></div>';
-								if (!loginer.custOrDistributorId) {
-									operationHtml += "<span class='restpassword' style='cursor:pointer; margin-left: 10px' loginId='" + data + "'>重置密码</span>";
+								operationHtml += '<div class="icon-trash icon-blue-color margin-smallR3 deleteBtn" title="删除" style="cursor:pointer" loginId=' + data + '></div>';
+								if (loginer.role === 1) {
+									operationHtml += "<div class='icon-blue-color restpassword icon-trash icon-key' title='重置密码' style='cursor:pointer' loginId='" + data
+											+ "'></div>";
 								}
 								operationHtml += '</div>';
 								return operationHtml;
