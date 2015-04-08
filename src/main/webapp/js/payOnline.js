@@ -149,7 +149,7 @@ payOnlie.alipay = function() {
 			url : '../pay/prepay.do',
 			type : "POST",
 			data : {
-				'total' : 2323
+				'total' : 0.01
 			},
 			success : function(data) {
 				$('#QRCode').attr('src', data.smallPicUrl);
