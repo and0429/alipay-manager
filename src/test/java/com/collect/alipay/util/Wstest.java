@@ -1,20 +1,25 @@
 package com.collect.alipay.util;
 
+import javax.inject.Inject;
+
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.collect.alipay.wsclient.AlipayPayService;
-import com.collect.alipay.wsclient.AlipayPayServiceImplService;
 import com.collect.alipay.wsclient.PrecreateRequest;
 import com.collect.alipay.wsclient.PrecreateResponse;
 
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(locations = { "classpath:beans.xml" })
 public class Wstest {
+
+	@Inject
+	private AlipayPayService service;
 
 	@Test
 	public void wsTest() {
-
-		AlipayPayServiceImplService serivce = new AlipayPayServiceImplService();
-
-		AlipayPayService alipay = serivce.getAlipayPayServiceImplPort();
 
 		PrecreateRequest pr = new PrecreateRequest();
 
@@ -25,7 +30,7 @@ public class Wstest {
 		pr.setTradeNo("101100fdsfds02");
 		pr.setUser("xcy");
 
-		PrecreateResponse resp = alipay.alipayPrecreate(pr);
+		PrecreateResponse resp = service.alipayPrecreate(pr);
 
 		System.out.println(resp.getBigPicUrl());
 

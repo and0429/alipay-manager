@@ -8,7 +8,6 @@ import com.collect.alipay.domain.Pay;
 import com.collect.alipay.service.PayService;
 import com.collect.alipay.util.UUIDUtil;
 import com.collect.alipay.wsclient.AlipayPayService;
-import com.collect.alipay.wsclient.AlipayPayServiceImplService;
 import com.collect.alipay.wsclient.PrecreateRequest;
 import com.collect.alipay.wsclient.PrecreateResponse;
 
@@ -21,8 +20,8 @@ import com.collect.alipay.wsclient.PrecreateResponse;
 @Named
 public class PayServiceImpl extends BaseServiceImpl<Pay> implements PayService {
 
-//	@Inject
-	private AlipayPayServiceImplService alipayService;
+	@Inject
+	private AlipayPayService alipayService;
 
 	/*
 	 * (non-Javadoc)
@@ -33,8 +32,6 @@ public class PayServiceImpl extends BaseServiceImpl<Pay> implements PayService {
 	@Override
 	public PrecreateResponse pay(String total, Loginer loginer) {
 
-		AlipayPayService alipay = alipayService.getAlipayPayServiceImplPort();
-
 		PrecreateRequest pr = new PrecreateRequest();
 
 		pr.setProductCode("QR_CODE_OFFLINE");
@@ -44,7 +41,7 @@ public class PayServiceImpl extends BaseServiceImpl<Pay> implements PayService {
 		pr.setTradeNo("101" + UUIDUtil.randomUUID());
 		pr.setUser(loginer == null ? null : loginer.getUsername());
 
-		return alipay.alipayPrecreate(pr);
+		return alipayService.alipayPrecreate(pr);
 	}
 
 }
