@@ -22,6 +22,9 @@ public class PayServiceImpl extends BaseServiceImpl<Pay> implements PayService {
 
 	@Inject
 	private AlipayPayService alipayService;
+	
+	@Inject
+	private String notifyUrl;;
 
 	/*
 	 * (non-Javadoc)
@@ -40,6 +43,7 @@ public class PayServiceImpl extends BaseServiceImpl<Pay> implements PayService {
 		pr.setTotal(total);
 		pr.setTradeNo("101" + UUIDUtil.randomUUID());
 		pr.setUser(loginer == null ? null : loginer.getUsername());
+		pr.setNotifyUrl(notifyUrl);
 
 		return alipayService.alipayPrecreate(pr);
 	}

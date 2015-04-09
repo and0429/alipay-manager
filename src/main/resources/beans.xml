@@ -1,10 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans" 
-	   xmlns:jaxws="http://cxf.apache.org/jaxws" 
-	   xmlns:tx="http://www.springframework.org/schema/tx" 
-	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-	   xmlns:context="http://www.springframework.org/schema/context" 
-	   xmlns:aop="http://www.springframework.org/schema/aop"
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:jaxws="http://cxf.apache.org/jaxws" xmlns:tx="http://www.springframework.org/schema/tx" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context" xmlns:aop="http://www.springframework.org/schema/aop"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/context
@@ -62,8 +57,15 @@
 			<tx:method name="update*" propagation="REQUIRED" />
 		</tx:attributes>
 	</tx:advice>
-	
+
 	<!-- ws client -->
 	<jaxws:client id="alipayService" serviceClass="com.collect.alipay.wsclient.AlipayPayService" address="http://localhost:8080/alipay/AlipayPayService" />
+
+	<!-- notifyUrl -->
+	<bean id="notifyUrl" class="java.lang.String">
+		<constructor-arg>
+			<value>http://123.57.68.107:8080/alipay-manager/pay/alipayNotify.do</value>
+		</constructor-arg>
+	</bean>
 
 </beans>

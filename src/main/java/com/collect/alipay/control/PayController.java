@@ -1,5 +1,9 @@
 package com.collect.alipay.control;
 
+import java.util.Map;
+import java.util.Set;
+import java.util.Map.Entry;
+
 import javax.inject.Inject;
 
 import org.springframework.ui.ModelMap;
@@ -55,6 +59,22 @@ public class PayController {
 	public Object prePay(String total, ModelMap model) {
 		Loginer loginer = (Loginer) model.get("loginer");
 		return payService.pay(total, loginer);
+	}
+
+	/**
+	 * 支付后接受通知
+	 */
+	@RequestMapping(value = "/alipayNotify")
+	public String alipayNotify(Map<String, Object> params) {
+
+		Set<Entry<String, Object>> set = params.entrySet();
+
+		for (Entry<String, Object> entry : set) {
+
+			System.out.println(entry.getKey() + "=================" + entry.getValue());
+		}
+		
+		return "success";
 	}
 
 }
