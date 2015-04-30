@@ -131,6 +131,27 @@ div#notice {
 			</div>
 		</div>
 	</div>
+
+	<div class="modal fade hide" id="QRCodeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<i class="fa fa-plus-square"></i>
+					<h4 class="modal-title">支付二维码</h4>
+				</div>
+				<div class="modal-body">
+					<div>
+						<img style="padding-left: 130px;" id="QRCode" />
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class='btn btn-info' data-dismiss="modal">取消</button>
+					<button type="button" class='btn btn-primary' id="saveBtn">确认</button>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
 
 <script type="text/javascript" src="../js/payOnline.js"></script>

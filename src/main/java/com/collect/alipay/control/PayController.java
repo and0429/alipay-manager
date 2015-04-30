@@ -44,4 +44,17 @@ public class PayController {
 		return payService.getPager(pay);
 	}
 
+	/**
+	 * 预支付
+	 * 
+	 * @param pays
+	 * @param total
+	 * @return
+	 */
+	@RequestMapping(value = "/prepay", method = RequestMethod.POST)
+	public Object prePay(String total, ModelMap model) {
+		Loginer loginer = (Loginer) model.get("loginer");
+		return payService.pay(total, loginer);
+	}
+
 }

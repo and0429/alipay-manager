@@ -58,6 +58,7 @@ payOnlie.loadDataTables = function() {
 
 		"initComplete" : function() {
 			payOnlie.addButton();
+			payOnlie.alipay();
 			payOnlie.deleteRow();
 		}
 	});
@@ -92,7 +93,7 @@ payOnlie.save2Table = function() {
 		} else {
 			$('#amount')[0].focus();
 		}
-		
+
 		$('#amount').val('');
 	});
 };
@@ -127,7 +128,7 @@ payOnlie.total = function(api) {
 payOnlie.addButton = function() {
 
 	var toolbarHtml = "";
-	toolbarHtml += "<button class='btn btn-warning' id='addbtn' style='margin-bottom: 10px;'>确认支付</button>";
+	toolbarHtml += "<button class='btn btn-warning' id='alipay' style='margin-bottom: 10px;'>确认支付</button>";
 	$('.toolbar').html(toolbarHtml);
 
 	var totalHtml = "";
@@ -135,4 +136,33 @@ payOnlie.addButton = function() {
 	$('.total').html(totalHtml);
 };
 
+/**
+ * alipay
+ */
+payOnlie.alipay = function() {
+
+	$('#alipay').on('click', function() {
+
+		$('#QRCode').attr('src', '');
+
+		$.ajax({
+			url : '../pay/prepay.do',
+			type : "POST",
+			data : {
+				'total' : 2323
+			},
+			success : function(data) {
+				$('#QRCode').attr('src', data.smallPicUrl);
+				$('#QRCodeModal').modal({
+					'backdrop' : 'static',
+					'show' : true
+				});
+			}
+		});
+	});
+};
+
+/**
+ * 
+ */
 $(document).ready(payOnlie.main());

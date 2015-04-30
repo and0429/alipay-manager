@@ -7,8 +7,12 @@
 
 	<!-- get pager data -->
 	<select id="getpager" resultMap="payMonth4Cust">
-		select * from t_pay_month_cust
-		left join t_cust
+		select
+		pmc.*,
+		c.*,
+		(select de_val from t_deduct) as deduct
+		from t_pay_month_cust pmc
+		left join t_cust c
 		on pc_custid = c_id
 		<include refid="whereCondition" />
 		limit #{payMonth4Cust.start}, #{payMonth4Cust.length}
@@ -27,6 +31,7 @@
 		<id column="pc_id" property="id" />
 		<result column="pc_month" property="month" />
 		<result column="pc_total_money" property="total" />
+		<result column="deduct" property="deduct" />
 		<association property="cust" javaType="Cust">
 			<id column="c_id" property="id" />
 			<result column="c_name" property="name" />

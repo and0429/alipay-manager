@@ -6,7 +6,7 @@ package com.collect.alipay.domain;
  * @author zhangkai
  *
  */
-public class PayMonth4Cust extends BaseModel{
+public class PayMonth4Cust extends BaseModel {
 
 	/**
 	 * 
@@ -32,6 +32,19 @@ public class PayMonth4Cust extends BaseModel{
 	 * 总金额
 	 */
 	private float total;
+
+	/**
+	 * 提成
+	 */
+	private float deduct;
+
+	public float getDeduct() {
+		return deduct;
+	}
+
+	public void setDeduct(float deduct) {
+		this.deduct = deduct;
+	}
 
 	public String getId() {
 		return id;
@@ -64,8 +77,5 @@ public class PayMonth4Cust extends BaseModel{
 	public void setTotal(float total) {
 		this.total = total;
 	}
-	
-	
-	
-	
+
 }

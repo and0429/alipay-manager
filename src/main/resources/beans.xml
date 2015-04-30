@@ -53,4 +53,8 @@
 		</tx:attributes>
 	</tx:advice>
 
+	<!-- ws client 
+	<bean id="alipayService" class="com.collect.alipay.wsclient.AlipayPayServiceImplService" />
+	-->
+
 </beans>
